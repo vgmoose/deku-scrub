@@ -1,19 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://yoursite.com/blog/2014/05/19/first-post/</loc>
+        <loc>
+            http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/19/first-post/
+        </loc>
         <lastmod>2014-05-19T19:17:28-04:00</lastmod>
     </url>
     <url>
-        <loc>http://yoursite.com/blog/archives/</loc>
+        <loc>
+            http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//blog/archives/
+        </loc>
         <lastmod>2014-05-19T19:17:28-04:00</lastmod>
     </url>
     <url>
-        <loc>http://yoursite.com/</loc>
+        <loc>http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//</loc>
         <lastmod>2014-05-19T19:17:28-04:00</lastmod>
     </url>
     <url>
-        <loc>http://yoursite.com/robots.txt</loc>
+        <loc>
+            http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//robots.txt
+        </loc>
         <lastmod>2014-05-19T19:12:35-04:00</lastmod>
     </url>
 </urlset>

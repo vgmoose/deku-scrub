@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://yoursite.com/sitemap.xml 
+Sitemap: http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//sitemap.xml 

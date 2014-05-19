@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Nothing | My Octopress Blog]]></title>
-  <link href="http://yoursite.com/blog/categories/nothing/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-05-19T19:17:42-04:00</updated>
-  <id>http://yoursite.com/</id>
+  <title><![CDATA[Category: Nothing | Red Hat Scrub]]></title>
+  <link href="http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//blog/categories/nothing/atom.xml" rel="self"/>
+  <link href="http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//"/>
+  <updated>2014-05-19T19:32:11-04:00</updated>
+  <id>http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Ricky Ayoub]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[First Post]]></title>
-    <link href="http://yoursite.com/blog/2014/05/19/first-post/"/>
+    <link href="http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/19/first-post/"/>
     <updated>2014-05-19T19:16:16-04:00</updated>
-    <id>http://yoursite.com/blog/2014/05/19/first-post</id>
+    <id>http://vgmoose.github.io/secret-avenger/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/19/first-post</id>
     <content type="html"><![CDATA[<p>This is a test post of a thing</p>
 ]]></content>
   </entry>
