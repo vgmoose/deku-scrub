@@ -133,15 +133,25 @@ function logEmIn()
     $.ajax({
            url:destination,
            type:'GET',
+           async: false,
            success: function(data){
-           alert(data);
+           location.href = destination;
            }
            });
+    
+    denied();
+
 }
 
+function denied()
+{
+    $("#popup1").fadeOut();
+    var d2 = generateLightBox("center", "center", "#bb0000");
+    lightboxContentHelper(d2, "sry man", "access ttly denied", "");
+}
 
 function auth() {
-    var d1 = generateLightBox("center", "center", "#000000");
+    d1 = generateLightBox("center", "center", "#000000");
     lightboxContentHelper(d1, "<input id='aaa' type='password' value='' placeholder='enter pass'></input>", "who r u", "", "login", "logEmIn()");
     document.getElementById('aaa').focus();
     
