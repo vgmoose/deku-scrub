@@ -1,0 +1,95 @@
+#blackout {
+        background-color: black;
+        opacity: .7;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left:0;
+        position:fixed;
+        z-index:9999;
+        display:none;
+}
+
+.lightbox {
+        z-index: 100000;
+        background-color:#2fa1d6;
+        color: white;
+        font-family: arial;
+		font-size:18px;
+		font-weight:500;
+        border-radius: 20px;
+        position: fixed;
+        text-align: center;
+		padding: 20px;
+        
+        a:link {color:#fff;}      /* unvisited link */
+        a:visited {color:#fff;}  /* visited link */
+        a:active {color:#fff;}  /* selected link */
+} 
+ 
+ .lightboxButton {
+	position: relative;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 20px;
+	color: #fff;
+	border: #000;
+	opacity: 0.8;
+    background-color: #000; 
+    font-family: Helvetica, Verdana, Geneva, sans-serif;
+	font-weight: 600;
+	margin: 10px;
+	text-align: center;
+	z-index:1000;
+	padding: 5px 10px 5px 10px;
+
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+	
+	-webkit-transition: all .1s ease;
+	-moz-transition: all .1s ease;
+	-ms-transition: all .1s ease;
+	-o-transition: all .1s ease;
+	transition: all .1s ease;
+	
+	 -webkit-box-shadow:0 0 4px #000;/*safari and Chrome*/
+     -moz-box-shadow:0 0 4px #000; /*Mozilla*/
+     -o-box-shadow:0 0 4px #000; /*Opera*/
+     -ms-box-shadow:0 0 4px #000; /*Ms IE*/
+     box-shadow:0 0 4px #000; /*W3C*/
+     -webkit-border-radius:15px;/*safari and Chrome*/
+     -moz-border-radius:15px; /*Mozilla*/
+     -o-box-border-radius:15px; /*Opera*/
+     -ms-box-border-radius:15px; /*Ms IE*/
+     border-radius:15px; /*W3C*/
+}
+
+.lightboxButton:hover {
+	opacity: 0.7;
+	-webkit-box-shadow:0 0 6px #000;/*safari and Chrome*/
+    -moz-box-shadow:0 0 6px #000; /*Mozilla*/
+    -o-box-shadow:0 0 6px #000; /*Opera*/
+    -ms-box-shadow:0 0 6px #000; /*Ms IE*/
+    box-shadow:0 0 6px #000; /*W3C*/
+}
+
+.lightboxButton:active {
+    -webkit-box-shadow: 0px 3px 0px #277196, 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px #277196, 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px #277196, 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
+}
+
+ .lightboxTitle {
+	font-size: 30px;
+	font-weight: 700;
+	font-family: Helvetica, Verdana, Geneva, sans-serif;
+ }
+ 
+ .lightboxContent {
+	font-size: 22px;
+	font-weight: 400;
+	font-family: Helvetica, Verdana, Geneva, sans-serif;
+ }
+   
