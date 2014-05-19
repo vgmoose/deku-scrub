@@ -128,7 +128,7 @@ function logEmIn()
     var pass = document.getElementById('aaa').value;
     var passhash = CryptoJS.MD5(pass);
     
-    var destination = passhash + "/index.html";
+    var destination = passhash + "/public/index.html";
     
     $.ajax({
            url:destination,
