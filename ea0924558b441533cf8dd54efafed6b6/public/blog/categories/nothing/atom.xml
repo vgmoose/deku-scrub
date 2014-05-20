@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nothing | Red Hat Scrub]]></title>
+  <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/public//blog/categories/nothing/atom.xml" rel="self"/>
+  <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/public//"/>
+  <updated>2014-05-19T20:08:20-04:00</updated>
+  <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/public//</id>
+  <author>
+    <name><![CDATA[Ricky Ayoub]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First post]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/public//blog/2014/05/19/first-post/"/>
+    <updated>2014-05-19T19:16:16-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/public//blog/2014/05/19/first-post</id>
+    <content type="html"><![CDATA[<p>This is a test post of a thing</p>
+]]></content>
+  </entry>
+  
+</feed>
