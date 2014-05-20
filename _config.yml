@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/
+url: http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40/
 title: Red Hat Scrub
 subtitle: Like a Deku scrub but not.
 author: Ricky Ayoub
@@ -26,7 +26,7 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: /red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/
+root: /red-hat-scrub/9d85a4016796366f0b182ea654be3e40/
 permalink: /blog/:year/:month/:day/:title/
 source: source
 destination: public

@@ -4,7 +4,7 @@ require 'sass-globbing'
 project_type = :stand_alone
 
 # Publishing paths
-http_path = "/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6/"
+http_path = "/red-hat-scrub/9d85a4016796366f0b182ea654be3e40/"
 http_images_path = "/images"
 http_generated_images_path = "/images"
 http_fonts_path = "/fonts"
