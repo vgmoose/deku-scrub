@@ -130,16 +130,20 @@ function logEmIn()
     
     var destination = passhash + "/index.html";
     
+    var bool = true;
+    
     $.ajax({
            url:destination,
            type:'GET',
            async: false,
            success: function(data){
            location.href = destination;
+           bool = false;
            }
            });
     
-    denied();
+    if (bool)
+        denied();
 
 }
 
