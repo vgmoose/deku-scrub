@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nothing | Red Hat Scrub]]></title>
   <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/categories/nothing/atom.xml" rel="self"/>
   <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//"/>
-  <updated>2014-05-19T20:55:16-04:00</updated>
+  <updated>2014-05-20T02:02:21-04:00</updated>
   <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Orientation Thoughts]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/20/orientation-thoughts/"/>
+    <updated>2014-05-20T01:34:32-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/20/orientation-thoughts</id>
+    <content type="html"><![CDATA[<p>The Red Hat two day orientation is coming up fast. It looks like it&rsquo;s going to be pretty fun, but there is no way to be 100% sure.</p>
+
+<p>Here is the schedule for the two days:
+<img class="center" src="/images/orientation.png"></p>
+
+<p>The notable things that I&rsquo;ve taken away from the schedule are the 10 minute &ldquo;Intro and Icebreaker&rdquo; at 9:35, which I&rsquo;m hoping will not be horribly embarrassing in any way shape or form. An hour long talk about &ldquo;Ethics and Legal&rdquo; does not sound like it would be terribly interesting either.</p>
+
+<p>The &ldquo;Ice Cream Social&rdquo; event, at first glance, appears childish. Upon closer inspection though, it is likely very important that it should happen. That is all that needs to be said about that.</p>
+
+<p><img class="center <a" src="href="http://jobs.redhat.com/job-categories/internships/~/media/Sites/RedHat/Images/locations/westfordinterns2-cropped.ashx">http://jobs.redhat.com/job-categories/internships/~/media/Sites/RedHat/Images/locations/westfordinterns2-cropped.ashx</a>"></p>
+
+<p>Pictured above is a team of interns from a previous year. I realize now that I have started writing these things that I don&rsquo;t know why I am writing them. Okay. Good post.</p>
+
+<p><img class="center" src="/images/snakes.png"></p>
+
+<p>omgeee omega ruby and alpha sapphire yeeaaa boiii</p>
+
+<p>I also spent some time today working on customizing a Fedora install and a picture of that is below.</p>
+
+<p><img class="center" src="/images/fedora_setup.png"></p>
+
+<p>Please don&rsquo;t hate me Chris, because I now love Fedora and obviously hate Debian, for it is the devil. We also love gnome3 and&hellip; qupzilla. That is all.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[First post]]></title>
