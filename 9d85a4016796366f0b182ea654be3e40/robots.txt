@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//sitemap.xml 

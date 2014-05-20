@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: nothing | Red Hat Scrub]]></title>
-  <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/categories/nothing/atom.xml" rel="self"/>
-  <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//"/>
-  <updated>2014-05-20T02:06:03-04:00</updated>
-  <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//</id>
+  <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/categories/nothing/atom.xml" rel="self"/>
+  <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//"/>
+  <updated>2014-05-20T14:24:38-04:00</updated>
+  <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Orientation Thoughts]]></title>
-    <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/20/orientation-thoughts/"/>
+    <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/20/orientation-thoughts/"/>
     <updated>2014-05-20T01:34:32-04:00</updated>
-    <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/20/orientation-thoughts</id>
+    <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/20/orientation-thoughts</id>
     <content type="html"><![CDATA[<p>The Red Hat two day orientation is coming up fast. It looks like it&rsquo;s going to be pretty fun, but there is no way to be 100% sure.</p>
 
 <p>Here is the schedule for the two days:</p>
@@ -28,7 +28,7 @@
 
 <p>The &ldquo;Ice Cream Social&rdquo; event, at first glance, appears childish. Upon closer inspection though, it is likely very important that it should happen. That is all that needs to be said about that.</p>
 
-<p><img class="center <a" src="href="http://jobs.redhat.com/job-categories/internships/~/media/Sites/RedHat/Images/locations/westfordinterns2-cropped.ashx">http://jobs.redhat.com/job-categories/internships/~/media/Sites/RedHat/Images/locations/westfordinterns2-cropped.ashx</a>"></p>
+<p><img class="center" src="/images/interns.jpeg"></p>
 
 <p>Pictured above is a team of interns from a previous year. I realize now that I have started writing these things that I don&rsquo;t know why I am writing them. Okay. Good post.</p>
 
@@ -46,9 +46,9 @@
   
   <entry>
     <title type="html"><![CDATA[First post]]></title>
-    <link href="http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/19/first-post/"/>
+    <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/19/first-post/"/>
     <updated>2014-05-19T20:54:05-04:00</updated>
-    <id>http://vgmoose.github.io/red-hat-scrub/ea0924558b441533cf8dd54efafed6b6//blog/2014/05/19/first-post</id>
+    <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/19/first-post</id>
     <content type="html"><![CDATA[<p>This is the first post.</p>
 ]]></content>
   </entry>
