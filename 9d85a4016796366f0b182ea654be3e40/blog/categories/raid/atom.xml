@@ -4,7 +4,7 @@
   <title><![CDATA[Category: raid | Red Hat Scrub]]></title>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/categories/raid/atom.xml" rel="self"/>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//"/>
-  <updated>2014-05-26T04:44:42-04:00</updated>
+  <updated>2014-05-26T04:57:47-04:00</updated>
   <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -51,7 +51,7 @@ Drive 2: full RAID member 2</p>
 
 <p><img class="center" src="/images/chickensandwich.jpg"></p>
 
-<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="http://tinyurl.com/lp3kgol">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="http://tinyurl.com/l3smgsc">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="/images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="/images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
 
 <p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
 

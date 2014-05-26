@@ -1,0 +1,9 @@
+did you know that websites actually track your click everywhere even through tinyurl? that is ridiculous...
+
+LVM Docs:
+http://tinyurl.com/lp3kgol
+
+RHEL7 ISO:
+http://tinyurl.com/l3smgsc
+
+temporary solution until proper encryption is implemented on the blog pages
