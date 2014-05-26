@@ -4,7 +4,7 @@
   <title><![CDATA[Red Hat Scrub]]></title>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//atom.xml" rel="self"/>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//"/>
-  <updated>2014-05-26T04:00:49-04:00</updated>
+  <updated>2014-05-26T04:44:42-04:00</updated>
   <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 03: Cubicle Sweet Cubicle]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/23/day-03-cubicle-sweet-cubicle/"/>
+    <updated>2014-05-23T04:06:11-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/23/day-03-cubicle-sweet-cubicle</id>
+    <content type="html"><![CDATA[<p>This was the first &ldquo;real&rdquo; work day here, without any intern specific activities, and also a Friday. When I arrived and parked in a spot in the back of the building, with my new babby laptop in tow, I really, for a brief moment, felt like a functioning member of society. I heroically scanned into the building using my incredibly and extremely fancy spider-man web-launcher style security card, only to become INSTANTLY lost in the maze that was the building. After eventually making my way to the Cube (and making a stop for a bagel in the break room)</p>
+
+<p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/IMG_20140523_112111.jpg"></p>
+
+<p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/500004774-03-01.jpeg"></p>
+
+<p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
+
+<p>Okay, but those computers were nothing in comparison to my dinosaurs. Here are the specs, again in convenient table format.</p>
+
+<p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/IMG_20140523_112117.jpg"></p>
+
+<p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
+
+<p>Drive 1: 200mb /boot, remaining space RAID member 2
+Drive 2: full RAID member 2</p>
+
+<p>RAID: one logical volume group</p>
+
+<p>volume group: 10GB logical volume for /, 4GB swap, 50GB logical volume for /home</p>
+
+<p>You might think that&rsquo;s all boring, but it (should mean) that anything at all that happens to any of the volumes within the volume group would be completely synced across drives. That is, if one drive were to fail completely, all of the data would remain intact.</p>
+
+<p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/chickensandwich.jpg"></p>
+
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="http://tinyurl.com/lp3kgol">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="http://tinyurl.com/l3smgsc">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+
+<p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
+
+<p>Yes, that is what I leave you with.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 02: Orientation Part 2]]></title>
