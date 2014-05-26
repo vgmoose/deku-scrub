@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nothing, | Red Hat Scrub]]></title>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/categories/nothing/atom.xml" rel="self"/>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//"/>
-  <updated>2014-05-26T03:55:41-04:00</updated>
+  <updated>2014-05-26T04:00:49-04:00</updated>
   <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -103,6 +103,8 @@ dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M
 </code></p>
 
 <p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>
+
+<p>There&rsquo;s a lot that I haven&rsquo;t mentioned here, including fiddling around with <code>lvremove</code>, <code>vgdisplay</code>, <code>lvrename</code>, and many more lv-, vg-, and pv tools. The way a lv (logical volume) builds on a vg (volume group) which builds on a pv (physical volume) seemed to, at least how I feel now, echo the networking stack, which is pretty interesting.</p>
 ]]></content>
   </entry>
   
