@@ -4,7 +4,7 @@
   <title><![CDATA[Red Hat Scrub]]></title>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//atom.xml" rel="self"/>
   <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//"/>
-  <updated>2014-05-20T14:24:38-04:00</updated>
+  <updated>2014-05-25T22:53:25-04:00</updated>
   <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 01: Orientation]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/21/day-01-orientation/"/>
+    <updated>2014-05-21T20:33:49-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/21/day-01-orientation</id>
+    <content type="html"><![CDATA[<p>So today was officially Day One of the Red Hat Summer Internship orientation. And you know what that means, children, do you not?</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/Red_Hat.jpg"></p>
+
+<p>THE DAY WAS UPON US. Let me clear up a few misconceptions first. The first of which being, driving is a rather difficult process. The entire route consists of this exactly: turn right, left, right, right, left, straight for a relatively long time, left, and then a right turn into the Red Hat Westford office. Upon arriving, I was instructed to park &lsquo;round back. I did this as instructed properly so that was good. I looked to my left and there was another intern-sized person parking directly next to me. After entertaining the idea of sparking a lovely conversation with him, I declined,</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/Red-Hat_3.jpg"></p>
+
+<p>Pictured above is the lovely abode. Also I should note to myself there&rsquo;s probably a neat and cool way to get inline captions on the images so I don&rsquo;t have to keep referring to them after they appear. After entering via the pictured entrance, they gave me the greatest gift they would ever give me that day. I will now describe it to you, but you can also look it up yourself on google images by searching &ldquo;cool security retractable clip id thing&rdquo;. Basically, it&rsquo;s a cool security retractable clip for your id thing. To break that down into terms that make sense: they gave us temporary (no photo yet) rfid cards and are on a retractable string that clips onto your pocket. It&rsquo;s REALLY cool. Picture scanning into a building at UMA, but instead of having to then put the card back in your pocket, you can just drop it, and then it will magically hookshot back onto you. Yes I am Link, that is the story.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/quote-first-they-ignore-you-then-they-laugh-at-you-then-they-fight-you-then-you-win-mahatma-gandhi-68010.jpg"></p>
+
+<p>Let&rsquo;s talk about culture. So RIGHT when you walk in, and I mean, RIGHT when you walk in. (To clarify, it&rsquo;s a little bit after you walk in and have scanned in with your ID already). You can see the above quote painted in big capital letters on the wall. I didn&rsquo;t think it was fitting <em>at the time.</em> That was before they got all up in my mind though with their englightning words. The whole intern debriefing was pretty boring, but when they got around to explaining the quote I was very interested. Picture this, the year is 1996 and you decide to literally enter the business of selling free software. That is, you are selling the support for the software. At this time, big ole fat companies are all using Big Ole Microsoft server to power their servers. But you step up to bat with your free software / paid support combo and compete against their product. Look I&rsquo;ve become less inspired while writing this now, but basically the quote is about Microsoft. First they ignore you, then they laugh at you, then they fight you, <a href="https://secure1.securityspace.com/s_survey/data/man.201211/apacheos.html">then you win</a>. (It is worth noting in this image (and as they were keen to point out) that Red Hat recently acquired CentOS).</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//images/image-6-for-a-tribute-for-the-anniversary-of-ice-cream-sundae-s-gallery-668896257.jpg"></p>
+
+<p>This was not the ice cream that we had at the social but it was pretty good. The other interns are also nice, but I might not be seeing much of them on the lvm team. Over ice cream (which I ate with Tom, my manager), he informed me that the lvm team actually consists of only 13 people, and they are scattered across the world, and only 2 other people are in the Westford office.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Orientation Thoughts]]></title>
