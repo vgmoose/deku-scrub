@@ -1020,19 +1020,19 @@ function decrypt()
 {
     pass = $.cookie('key');
     
-//    if (pass == null)
-//        location.href="/deku-scrub/";
+    if (pass == null)
+        location.href="/deku-scrub/";
     
     main_content = $('#content').html();
     
     if (main_content.indexOf("<div") < 0)
     {
-        dec_content = GibberishAES.dec(main_content, "kinglerhyperthang");
+        dec_content = GibberishAES.dec(main_content, pass);
         $('#content').html(dec_content);
     }
     
     $('.entry-content').each(function() {
-        dec_entry = GibberishAES.dec($.trim($(this).html()), "kinglerhyperthang");
+        dec_entry = GibberishAES.dec($.trim($(this).html()), pass);
         $(this).html(dec_entry);
     });
     
