@@ -1016,3 +1016,26 @@
 
 }));
 
+function decrypt()
+{
+    pass = $.cookie('key');
+    
+    if (pass == null)
+        location.href="/deku-scrub/";
+    
+    main_content = $('#content').html();
+    
+    if (main_content.indexOf("<div") < 0)
+    {
+        dec_content = GibberishAES.dec(main_content, "kinglerhyperthang");
+        $('#content').html(dec_content);
+    }
+    
+    $('.entry-content').each(function() {
+        dec_entry = GibberishAES.dec($(this).html(), "kinglerhyperthang");
+        $(this).html(dec_entry);
+    });
+    
+}
+
+window.onload = decrypt();

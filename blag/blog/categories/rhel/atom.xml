@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rhel | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/rhel/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-05-27T00:05:24-04:00</updated>
+  <updated>2014-05-27T01:00:37-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -22,11 +22,11 @@
 
 <p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
 
-<p><img class="center" src="images/IMG_20140523_112111.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140523_112111.jpg"></p>
 
 <p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
 
-<p><img class="center" src="images/500004774-03-01.jpeg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/500004774-03-01.jpeg"></p>
 
 <p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
 
@@ -34,7 +34,7 @@
 
 <p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
 
-<p><img class="center" src="images/IMG_20140523_112117.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140523_112117.jpg"></p>
 
 <p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
 
@@ -49,9 +49,9 @@ Drive 2: full RAID member 2</p>
 
 <p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
 
-<p><img class="center" src="images/chickensandwich.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/chickensandwich.jpg"></p>
 
-<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="/deku-scrub/blag/images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="/deku-scrub/blag/images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
 
 <p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
 
@@ -66,11 +66,11 @@ Drive 2: full RAID member 2</p>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
     <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
 
-<p><img class="center" src="images/IMG_20140521_090618.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140521_090618.jpg"></p>
 
 <p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
 
-<p><img class="center" src="images/IMG_20140522_120209.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140522_120209.jpg"></p>
 
 <p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
 
@@ -116,7 +116,7 @@ Drive 2: full RAID member 2</p>
 
 <p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
 
-<p><img class="center" src="images/sandies.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/sandies.jpg"></p>
 
 <p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
 
@@ -126,7 +126,7 @@ Drive 2: full RAID member 2</p>
 
 <p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
 
-<p><img class="center" src="images/Sad-pug.jpg"></p>
+<p><img class="center" src="/deku-scrub/blag/images/Sad-pug.jpg"></p>
 
 <p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
 

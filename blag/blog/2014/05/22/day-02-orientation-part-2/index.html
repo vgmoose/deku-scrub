@@ -7,7 +7,8 @@
 	<meta name="author" content="Ricky Ayoub">
 
 	
-	<meta name="description" content="The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS &hellip;">
+	<meta name="description" content="U2FsdGVkX187i/6ESfOgNA32JPnf5uWb1QSDJVfwdxFiqSF78pp8hOj4Ac34
+m0euf00MWFXGxqfkT72cRaaBgpSMJ8qzGqH9Noz3IgNwi1iCaL8CHWBjmRM/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,95 +76,160 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Day 02: Orientation Part 2</h2>
-	<div class="entry-content"><p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
-
-<p><img class="center" src="images/IMG_20140521_090618.jpg"></p>
-
-<p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
-
-<p><img class="center" src="images/IMG_20140522_120209.jpg"></p>
-
-<p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Spec        </th>
-<th> Value    </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> Processor   </td>
-<td> i7-4600U </td>
-</tr>
-<tr>
-<td></td>
-<td> Memory      </td>
-<td> 12GB     </td>
-</tr>
-<tr>
-<td></td>
-<td> Storage     </td>
-<td> 256GB    </td>
-</tr>
-<tr>
-<td></td>
-<td> Resolution  </td>
-<td> 1080p</td>
-</tr>
-<tr>
-<td></td>
-<td> Battery     </td>
-<td> two???</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>Yeah, it has two batteries for some reason which was very confusing at first. Well, that&rsquo;s all the good news, but the bad news is that I will have to return it at the end of the internship :(. My poor baby.</p>
-
-<p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
-
-<p><img class="center" src="images/sandies.jpg"></p>
-
-<p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
-
-<p>I signed onto IRC and joined all the channels that my manager advised I hang out in, and then got to work on the laptop. My official instructions were to read up about lvm (logical volume management) partitions. In particular, I was to read the RHEL7 instructions that were in development and ensure that they were accurate to what actually happened. In this pursuit though, I began to notice something. I was unable to install any packages still, even despite having given myself root through recovery mode. Apparently Fedora and Red Hat binaries aren&rsquo;t actually compatible? And of course, to install anything that wasn&rsquo;t a binary I&rsquo;d need a compiler but I couldn&rsquo;t fetch one of those either. Being a scrub, maybe one day I will figure out just what the problem was, but at the time I could not.</p>
-
-<p>I wasn&rsquo;t entirely comfortable with the idea of completely wiping the CSB they had just provided me with. It was custom configured to connect to the Red Hat VPN in Raleigh, among other things. To combat this, I opened up the disk utility to check out the feasability of a dual boot. Much to my surprise, the disk was split up like this: 3GB for /dev/sda1 (this was mounted as /boot, which AFAIK is about 2.8GB more than it needs to be?), 253GB for /dev/sda2. Okay, that&rsquo;s not the surprising part. The 253GB partition was a logical volume group encrypted with LUKS. Inside of this, however, was a rather odd setup: 8GB for /home, 30GB for a blank directory mounted as /VirtualMachines, 8GB for /, 4GB for swap. And that&rsquo;s it.</p>
-
-<p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
-
-<p><img class="center" src="images/Sad-pug.jpg"></p>
-
-<p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
-
-<p>To list all the logical volumes (these are the things that are within the encrypted partition)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lvdisplay</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lvcreate --size 30GB RHELCSB6</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&rsquo;s <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how compicated and unrepresentable it was in the included GUI tools.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
-</span><span class='line'>dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>
-
-<p>There&rsquo;s a lot that I haven&rsquo;t mentioned here, including fiddling around with <code>lvremove</code>, <code>vgdisplay</code>, <code>lvrename</code>, and many more lv-, vg-, and pv tools. The way a lv (logical volume) builds on a vg (volume group) which builds on a pv (physical volume) seemed to, at least how I feel now, echo the networking stack, which is pretty interesting.</p>
+	<div class="entry-content">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
+p+AAED2BcT3o15Q=
 </div>
 
 

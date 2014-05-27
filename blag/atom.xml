@@ -4,7 +4,7 @@
   <title><![CDATA[Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-05-27T00:05:24-04:00</updated>
+  <updated>2014-05-27T01:00:37-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -18,44 +18,104 @@
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle/"/>
     <updated>2014-05-23T04:06:11-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle</id>
-    <content type="html"><![CDATA[<p>This was the first &ldquo;real&rdquo; work day here, without any intern specific activities, and also a Friday. When I arrived and parked in a spot in the back of the building, with my new babby laptop in tow, I really, for a brief moment, felt like a functioning member of society. I heroically scanned into the building using my incredibly and extremely fancy spider-man web-launcher style security card, only to become INSTANTLY lost in the maze that was the building. After eventually making my way to the Cube (and making a stop for a bagel in the break room)</p>
-
-<p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
-
-<p><img class="center" src="images/IMG_20140523_112111.jpg"></p>
-
-<p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
-
-<p><img class="center" src="images/500004774-03-01.jpeg"></p>
-
-<p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
-
-<p>Okay, but those computers were nothing in comparison to my dinosaurs. Here are the specs, again in convenient table format.</p>
-
-<p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
-
-<p><img class="center" src="images/IMG_20140523_112117.jpg"></p>
-
-<p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
-
-<p>Drive 1: 200mb /boot, remaining space RAID member 2
-Drive 2: full RAID member 2</p>
-
-<p>RAID: one logical volume group</p>
-
-<p>volume group: 10GB logical volume for /, 4GB swap, 50GB logical volume for /home</p>
-
-<p>You might think that&rsquo;s all boring, but it (should mean) that anything at all that happens to any of the volumes within the volume group would be completely synced across drives. That is, if one drive were to fail completely, all of the data would remain intact.</p>
-
-<p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
-
-<p><img class="center" src="images/chickensandwich.jpg"></p>
-
-<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
-
-<p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
-
-<p>Yes, that is what I leave you with.</p>
+    <content type="html"><![CDATA[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
+cliA
 ]]></content>
   </entry>
   
@@ -64,95 +124,160 @@ Drive 2: full RAID member 2</p>
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2/"/>
     <updated>2014-05-22T02:24:20-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
-    <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
-
-<p><img class="center" src="images/IMG_20140521_090618.jpg"></p>
-
-<p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
-
-<p><img class="center" src="images/IMG_20140522_120209.jpg"></p>
-
-<p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Spec        </th>
-<th> Value    </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> Processor   </td>
-<td> i7-4600U </td>
-</tr>
-<tr>
-<td></td>
-<td> Memory      </td>
-<td> 12GB     </td>
-</tr>
-<tr>
-<td></td>
-<td> Storage     </td>
-<td> 256GB    </td>
-</tr>
-<tr>
-<td></td>
-<td> Resolution  </td>
-<td> 1080p</td>
-</tr>
-<tr>
-<td></td>
-<td> Battery     </td>
-<td> two???</td>
-</tr>
-</tbody>
-</table>
-
-
-<p>Yeah, it has two batteries for some reason which was very confusing at first. Well, that&rsquo;s all the good news, but the bad news is that I will have to return it at the end of the internship :(. My poor baby.</p>
-
-<p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
-
-<p><img class="center" src="images/sandies.jpg"></p>
-
-<p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
-
-<p>I signed onto IRC and joined all the channels that my manager advised I hang out in, and then got to work on the laptop. My official instructions were to read up about lvm (logical volume management) partitions. In particular, I was to read the RHEL7 instructions that were in development and ensure that they were accurate to what actually happened. In this pursuit though, I began to notice something. I was unable to install any packages still, even despite having given myself root through recovery mode. Apparently Fedora and Red Hat binaries aren&rsquo;t actually compatible? And of course, to install anything that wasn&rsquo;t a binary I&rsquo;d need a compiler but I couldn&rsquo;t fetch one of those either. Being a scrub, maybe one day I will figure out just what the problem was, but at the time I could not.</p>
-
-<p>I wasn&rsquo;t entirely comfortable with the idea of completely wiping the CSB they had just provided me with. It was custom configured to connect to the Red Hat VPN in Raleigh, among other things. To combat this, I opened up the disk utility to check out the feasability of a dual boot. Much to my surprise, the disk was split up like this: 3GB for /dev/sda1 (this was mounted as /boot, which AFAIK is about 2.8GB more than it needs to be?), 253GB for /dev/sda2. Okay, that&rsquo;s not the surprising part. The 253GB partition was a logical volume group encrypted with LUKS. Inside of this, however, was a rather odd setup: 8GB for /home, 30GB for a blank directory mounted as /VirtualMachines, 8GB for /, 4GB for swap. And that&rsquo;s it.</p>
-
-<p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
-
-<p><img class="center" src="images/Sad-pug.jpg"></p>
-
-<p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
-
-<p>To list all the logical volumes (these are the things that are within the encrypted partition)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lvdisplay</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lvcreate --size 30GB RHELCSB6</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&rsquo;s <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how compicated and unrepresentable it was in the included GUI tools.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
-</span><span class='line'>dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>
-
-<p>There&rsquo;s a lot that I haven&rsquo;t mentioned here, including fiddling around with <code>lvremove</code>, <code>vgdisplay</code>, <code>lvrename</code>, and many more lv-, vg-, and pv tools. The way a lv (logical volume) builds on a vg (volume group) which builds on a pv (physical volume) seemed to, at least how I feel now, echo the networking stack, which is pretty interesting.</p>
+    <content type="html"><![CDATA[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
+p+AAED2BcT3o15Q=
 ]]></content>
   </entry>
   
@@ -161,23 +286,92 @@ Drive 2: full RAID member 2</p>
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/21/day-01-orientation/"/>
     <updated>2014-05-21T20:33:49-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/21/day-01-orientation</id>
-    <content type="html"><![CDATA[<p>So today was officially Day One of the Red Hat Summer Internship orientation. And you know what that means, children, do you not?</p>
-
-<p><img class="center" src="images/Red_Hat.jpg"></p>
-
-<p>THE DAY WAS UPON US. Let me clear up a few misconceptions first. The first of which being, driving is a rather difficult process. The entire route consists of this exactly: turn right, left, right, right, left, straight for a relatively long time, left, and then a right turn into the Red Hat Westford office. Upon arriving, I was instructed to park &lsquo;round back. I did this as instructed properly so that was good. I looked to my left and there was another intern-sized person parking directly next to me. After entertaining the idea of sparking a lovely conversation with him, I declined,</p>
-
-<p><img class="center" src="images/Red-Hat_3.jpg"></p>
-
-<p>Pictured above is the lovely abode. Also I should note to myself there&rsquo;s probably a neat and cool way to get inline captions on the images so I don&rsquo;t have to keep referring to them after they appear. After entering via the pictured entrance, they gave me the greatest gift they would ever give me that day. I will now describe it to you, but you can also look it up yourself on google images by searching &ldquo;cool security retractable clip id thing&rdquo;. Basically, it&rsquo;s a cool security retractable clip for your id thing. To break that down into terms that make sense: they gave us temporary (no photo yet) rfid cards and are on a retractable string that clips onto your pocket. It&rsquo;s REALLY cool. Picture scanning into a building at UMA, but instead of having to then put the card back in your pocket, you can just drop it, and then it will magically hookshot back onto you. Yes I am Link, that is the story.</p>
-
-<p><img class="center" src="images/quote-first-they-ignore-you-then-they-laugh-at-you-then-they-fight-you-then-you-win-mahatma-gandhi-68010.jpg"></p>
-
-<p>Let&rsquo;s talk about culture. So RIGHT when you walk in, and I mean, RIGHT when you walk in. (To clarify, it&rsquo;s a little bit after you walk in and have scanned in with your ID already). You can see the above quote painted in big capital letters on the wall. I didn&rsquo;t think it was fitting <em>at the time.</em> That was before they got all up in my mind though with their englightning words. The whole intern debriefing was pretty boring, but when they got around to explaining the quote I was very interested. Picture this, the year is 1996 and you decide to literally enter the business of selling free software. That is, you are selling the support for the software. At this time, big ole fat companies are all using Big Ole Microsoft server to power their servers. But you step up to bat with your free software / paid support combo and compete against their product. Look I&rsquo;ve become less inspired while writing this now, but basically the quote is about Microsoft. First they ignore you, then they laugh at you, then they fight you, <a href="https://secure1.securityspace.com/s_survey/data/man.201211/apacheos.html">then you win</a>. (It is worth noting in this image (and as they were keen to point out) that Red Hat recently acquired CentOS).</p>
-
-<p><img class="center" src="images/image-6-for-a-tribute-for-the-anniversary-of-ice-cream-sundae-s-gallery-668896257.jpg"></p>
-
-<p>This was not the ice cream that we had at the social but it was pretty good. The other interns are also nice, but I might not be seeing much of them on the lvm team. Over ice cream (which I ate with Tom, my manager), he informed me that the lvm team actually consists of only 13 people, and they are scattered across the world, and only 2 other people are in the Westford office.</p>
+    <content type="html"><![CDATA[U2FsdGVkX1+r2yQCEjYGeO9M1l3xHM6XTjuDZn0LU4Kirso854vbYx8tU141
+/RGtLhmAA41uwGkpfY6QLMo+ggKghBeIONble3cxUK7ipuKIsuOcAXABvfvg
+t6mySDYHx1BEasrL5fXJ3pspeRxv3j5mwo5iQ+6KWZxzxuVcmfO91ORTJlwG
+I1bYQxrfMQKYnd2RSTYYflG7Loulu2KV8OswQBFo9dlX3ndJRhoV4Duujb65
+VqHdzZtELbpJI0caLOPWZjWnXtP6tVgG9U353J8s1Q+WhxWTxaB0QBWIRljk
+pOTzs8S8AIoX1cs7ebkAi0oqTkYb2h0Jc58waY6NlQhgN+8liPnhbZeJ4OoL
+q7pVlk4W6rIPSDt06NuOT/4cCQYbb3X7dGlYAn8vdIdIaY6GzexP+lszk24U
+Nh6G9i5LRsqlmibml/aRUT6MUlYbmyn9EA41HNbPxAGPk9DIgQ5F7jOeolkN
+vDVY69DhP0cXqeNvQe1zAJCRR+Zuo65iBXRpUihwX0S1BrV4qZwv6FlTkda6
+E9u52W6Em0lt/QYiOAA2W6HqdpIBjfSt+U693WIinVG9T+1amOH7g4bBF60e
+LFM5qUibwIhfafd/8XQiTD302Ypt/FK3XTGBjX5SxKsKA+M28q1HnOvmIDAd
+V88yke9DVNs4xZyAlYGyZM6fL+0nzMpSEwYYHJi+7b2WmUj1VDjLJihTHJyR
+XRUJgfk2pwc+Y2DemV+RfqkYUeUeeML+SZ/VY+TnT0FK/cDqS+nYGFidOuMd
+Q+5yQy6hU2FnMq2bB49UpQFCBoSTjzfPGBEhffAuBohOg6PLhnYh4kBsutB9
+5c8W32ZO7XTWmkSXFVeHQbrRdJeHEJSzBcP1MQOXtRyWzEFjytKgrl/SiC6F
+UcQnZQEeM64PU1PDNgof5+m34i4a4/Ikmw6+WuhJsPbUixnWRv6sXHkurlH4
+eapqLqHPkDDmIGxZznIswAEyyu6V/DuHxHrZM4GtoTvDFczEcm3XhWzx8Kd7
+ZYURb5ZNOwP3UEJbEu+wFnYCCJIA7DQ6CLuWJlx5hoy3saQfU/2cjp7CrLS5
+Fo0N33teJW30LxvmrXAF+yhLfpF7opg8lnlshrsD2jcZzYuD/ACKG1P5mWmD
+V3L7+/TvVU+3I+plMbTp0+qdWRx5N6dPp15867yV0oTqG4f8+XemPrikG6Y2
+vNxgO0Vtrnq3NneSCFBphm3scMEAnAd6tbq4Pzc7jFKOovfG3Nt7HZTO6v3+
+1hya5DQseumVFuKmd9IRs2w5rZ36wgXS7HF95XZi/1/qw5rwOeMYnfes+aKb
+7h3JkV7FSOe6aLI36SmiRTo/cNCJTL5tBSDzSd51LtWD3XDVK1Uo6BZS0NZC
+VvyVPSDZaTeekriQIgD8AU8pNaG/o2LhNcpj7h4XhD0bEIYU+oRWVBPpPO5I
+QkSFFLxNJYU6CpQ/Zd7wqTQmiRauvljB3+v4UpzsmMYW5jRXTNQdCup1sF4I
+L7IDwBSJEMEhKrV7RIEt7B4kKp3ksKLlcNeH/dxb1UrPwGoZ+hRFU1TmY3CB
+ak7e5lyCWZzaLP3M/K3l7pA+mMNhk9d7RgxZXXSaDXBwf3t+ZtWkOaWyU1ZX
+qbYFzA+KEoMdjB/75xvda70I38SlbGwRGX6Z7xP0tqSeWv5dnr1l+OMM3J0R
+nSVxemRpI+AJaZvKxwCI7jDCVw1Z7UPJjzb2JTBSiTK0UxEDM1qOay2fFYna
+KLuhZm063b5Qig1Ye85NrbvJuJWHXgozhkvwl3knoLKcnEbEYPnuRank2qma
+/hF0yC0FBWoHQ1UEmj+aH6WCOCqfxkFLXrceo23PWWgsd8erCNFKlhX71e8u
+8QHSa+VB79B6MtDSz5Dbamol0n88a7UqqENGcrLVP7B3sWaLtEpdWeEuYDAs
+puJArIxxCfM/b/opfXSwItk2iMYQTCIzQEPqm6CSThe5NsLauewvCB7++ruE
+XgjaHIsq7iDxIb4PV5FyAhNgGtm9DXdZESnkqqXx5xgAJHYGvv6P1HbqeqAx
+7XYy/uD4L79CR6FLhadK1jaeuSFAF2dnhNXqtwriTGd4h5bJ9yLNbmcr4AU4
+RlxKVhBelk+++eg26V9/fUdxbWVOkrodznhpHFx63v2pbtsQwIhpJwKv2XDk
+yJnCKfj1Dv748MNWFiT4YTdTysUtw6D6t3WVKxzgriTWptJN5X5VNKFQbWYs
+DTD37yQNJKYGFnQO55BsUxgPXZJOPo3WG0rsqlI2CjZwvorfIhUO+gtV6if+
+6fxJwxwRs17zrw3QFQaEhHltrYf1F5Y1Np2VrZSw3VYMatILoGYt1l8bpxrO
+gtdT2RrdxZuq5n35KE2PE57MiLMDB5Z8B0YHgeCs/4HJw+DEMt8kRwxVhaQa
+8U4wTn7rzEaznXIb4nY/tTA/Iusk5DkbNXflOef3l9yplmwOEXVkE/4JPn16
+lan2EuZUJxuftIE5BC2Iqp/6tL0dTlsEQAIp+8fu90r31n/TbhTrZWi+eE2Y
+ZjGuujw/uf8RbzNBeTSmRvfAGgUO2Ltm2PEdMDQlRTh01JPSb9cIdMrdaMAp
+POC3PnxT0vM9wef5obDyREb1b+yV8vszJSC/tNFa4yW3gTBjLL1i9jQQBNfy
+BuOjcxdZkfhPfX+yWKeJRW4L12a19BOzNIpzOZyumbr6gzkS0VdX+QUwYQjQ
+c9r2NWOc+bCIFq/k9sDELtY/nAs005LFMWbMLAGZ0r3meegZPCffCjJ7RxeF
+5KzckoODehh5CZluH4wNJ1afqED4mmZH5KEWoong/TgV61EZD8c2aI41XufQ
+ZgaGoRccwSmWVgQpOMwa3SLb1XplnmOwer0+cD/klkWyumP1U4EuN4lKNOd5
+Vi2gRR7iNvzGgXqMhd/oXDVBSFwROCLjGrDU6FW1sWKExulvQmTPkFJoBIdi
+JuEq3ArcDM6Z0+iJ6bN0/OHnMVMjAPrkrFdSZybOzMqlQGs8Co7hitMcoHUO
+jQUh9Tn/Ka4kzTzCWYoUBkoR+4oTgcGS4TAdM7yiWDLXnxXyuKc31hctlVR1
+8y9SUdP3jdr56OnMpuQuXNa6EM1t+UU8tdRIVbhDyTSxEi0+x7Ws6mLv3ejQ
+IbGttb6ZHnAo3dV1E/Zz2nb6wL2cmAilcNofneGEUB+3EmAXa3q6+HCfPDKQ
+yh54sNRCduFreENYcWIYYBsQIE7sftoriZJrRYaMwVB/GMN7gjytnIf5/EWx
+SUCYETX4DMUb6yld2Mllo3yL6A/dKQdvawE088os8BB5ytSv+KAXzK3UedkY
+13vyfbefWX25xRBfZwT9mYwjfb8ShlVNSzpZwrfS1LSaE87XZ0Ic2sqvNF8P
+7pa1u46rJ46FQ53hM5PTTu7X4B8TYgnX8Dmo484kPHHkpirBBOiQVboeqTfc
+uYTX1RUejkopxXvokjBc+P1kBcOJsM5PnW/mJGUPfDMsJhMLZ5b4Ylv/NAu7
+/dqUFT0BSJ8l0JK9R9ybyJpHCoLMYmUvDEAuWOAxoUkMdVAk6dUDPJu5dN3G
+mbhSKNmMPfAqtMBEcvJyol5UBYqO4dCkzmmxag/ZE+gg5Ix1gmWy+6RF1lIF
+XLHOje8pMO02F9VYAscp+jO7fekwowg4awk+7Rh1dSH3P+rp/yz7paBtNr6T
+b8wgiqWortLRPKQZj/P+e5wum6IqCMmIkCUsOF2qU1o8XaZ1ZctIX0NzFrbp
+o7SJqkbARYEUP+cREmPpyJEt6Y41oPTKt7Pe8pRFrveLPTT0vTx+C3t7PxM4
+TsETEJPEUjb7YFCnqqDmIibE94lMGEPv6Uk+uXx0A8L8bkJBNzwnrIlkoKZS
+NZ0n8aVUoNUNrH0F3U7PAuco1SkjyTvnsAeaOC6O6EP6Noq7/6gHJ83g4cR8
+GnOucSksSmLNcdX4DGaIn7dPd1VtB6mBa/9aYIfal2pzVGKQe9LCNtPI99B/
+ffN1dZ3myaNwZXHcOeVP52yjmUm1i07HtJ6EvmQ4pvM7CI6bxoygiF4GPbE2
+p5EqZul4wsyKy9UTM3wpd1Ue19tCHTcvzQSTng++KCUsP1uWjikK5cQba44M
+FKBWJF1VHC7iTV6MkZf9atJxIGK6wNfJyvLnv/bYLd5Qe0ZTCgDPaJezWc2d
+X+SQAMCIGV7FPQ/w0M7zMiggbYAFu0VWthQSGw+wITuXQ4qis3TFi7fV4Xs0
+vi27814PQb3EFzVGc1v9NcKNi5V/jGUOnM7MPkwN6Bna8pwRPnPBO8xgGXY3
+nzOJM8RLfQuUzlnhzKu4pWEUVmufxAEw74JLZ5TgYDsfLcZXFp5RAPlsegI3
+CBvAqw4xjZ9JhWTD8SA3K4XDJ931mdWnqMhV6q9pmJDLKLOyz4oELvo+6Aq6
+oJdHh/7oJwRgrLgTBMNHRJ1KxkWbXcIoy9ydeOylTPbna5WrBSp5QUHbjARv
+RM77IsqV/aMtb11UazcOL+5DTxob/ZQJHGk1X2gAsYyJ20oUEuq/7W7ZteXZ
+NCX5+SGycvMaqqI1nTZXjyetXQQgQRf7JHWzp3mR4byFy+9Dq++EQthXsDvQ
+Jv9GHS2Wuna5Gr5eLVuE4pVjJhau8mFmVx+SkkuV08aX71bny5vAFJEBp4JQ
+bXeUxRpZwwWsLDynC4aJSo5mfOVO0oETUxNd5hYaisJrtNY20GKy0Ax8pkwX
+4PUEL3hqo8k/TfES6jNxC74QO90zxLrmOtuLnncJdyWNuyGVa2bBCH+At+J0
+JRiHkrFCQZHLePkGtdgvCvIRzLaCWClPwWa9Y/tb2ZwfzAXgHwk3sXGjK0Za
+unoQT7calMwMqy6dRYCBljUYcZDWaNeJxaN3n5PUnF+lCzDBNzzXnbrMD5tu
+W2+jGV0YQpwjWKchrds1KhvwiZ3GiKpqnOb4B9QlJDW429DKNOqxRU+U75Ty
+XGDdGzRtThA4x1HEwOUf7EXt+S5qL5c9ltLL6eZXcaY+eZkbERO4ZdiYk7VV
+u+lvbzXgIMxO/QNH7+9uEw9eS+IIAy0n/MsOK/Wh4hcYz6848HDHoDEOuRSH
+9WEBBr+bA5o9bwEJZ1l0mMrGSoYfC5VxRwN0Yg37WpZimexYGP0JSAM20kPb
+qMGI0DQ7uAIXo0JSKT82
 ]]></content>
   </entry>
   
@@ -186,29 +380,42 @@ Drive 2: full RAID member 2</p>
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/20/orientation-thoughts/"/>
     <updated>2014-05-20T01:34:32-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/20/orientation-thoughts</id>
-    <content type="html"><![CDATA[<p>The Red Hat two day orientation is coming up fast. It looks like it&rsquo;s going to be pretty fun, but there is no way to be 100% sure.</p>
-
-<p>Here is the schedule for the two days:</p>
-
-<p><img class="center {{ root_url" src="}}/orientation.png"></p>
-
-<p>The notable things that I&rsquo;ve taken away from the schedule are the 10 minute &ldquo;Intro and Icebreaker&rdquo; at 9:35, which I&rsquo;m hoping will not be horribly embarrassing in any way shape or form. An hour long talk about &ldquo;Ethics and Legal&rdquo; does not sound like it would be terribly interesting either.</p>
-
-<p>The &ldquo;Ice Cream Social&rdquo; event, at first glance, appears childish. Upon closer inspection though, it is likely very important that it should happen. That is all that needs to be said about that.</p>
-
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//deku-scrub/blag/images/interns.jpeg"></p>
-
-<p>Pictured above is a team of interns from a previous year. I realize now that I have started writing these things that I don&rsquo;t know why I am writing them. Okay. Good post.</p>
-
-<p><img class="center { root_url" src="//vgmoose.github.io/deku-scrub/blag//images/snakes.jpg"></p>
-
-<p>omgeee omega ruby and alpha sapphire yeeaaa boiii</p>
-
-<p>I also spent some time today working on customizing a Fedora install and a picture of that is below.</p>
-
-<p><img class="center {{ root_url" src="images/fedora_setup.png"></p>
-
-<p>Please don&rsquo;t hate me Chris, because I now love Fedora and obviously hate Debian, for it is the devil. We also love gnome3 and&hellip; qupzilla. That is all.</p>
+    <content type="html"><![CDATA[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
+iwNhGXKiy2cg
 ]]></content>
   </entry>
   
@@ -217,7 +424,8 @@ Drive 2: full RAID member 2</p>
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/19/first-post/"/>
     <updated>2014-05-19T20:54:05-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/19/first-post</id>
-    <content type="html"><![CDATA[<p>This is the first post.</p>
+    <content type="html"><![CDATA[U2FsdGVkX1/g1mP6iHb9BjXY2rYbSB7DCr8H2lNMdaWXTGEqLpa2GSQKoOGr
+SF/n
 ]]></content>
   </entry>
   

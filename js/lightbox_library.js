@@ -137,7 +137,8 @@ function logEmIn()
            type:'GET',
            async: false,
            success: function(data){
-           location.href = destination;
+           $.cookie("key", pass);
+           location.href = '/deku-scrub/blag/';
            bool = false;
            }
            });
