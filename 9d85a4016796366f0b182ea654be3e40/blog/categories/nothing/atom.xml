@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: nothing, | Red Hat Scrub]]></title>
-  <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/categories/nothing/atom.xml" rel="self"/>
-  <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//"/>
-  <updated>2014-05-26T22:29:16-04:00</updated>
-  <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</id>
+  <link href="http://vgmoose.github.io/red-hat-scrub//blog/categories/nothing/atom.xml" rel="self"/>
+  <link href="http://vgmoose.github.io/red-hat-scrub//"/>
+  <updated>2014-05-26T23:14:48-04:00</updated>
+  <id>http://vgmoose.github.io/red-hat-scrub//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Day 02: Orientation Part 2]]></title>
-    <link href="http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/22/day-02-orientation-part-2/"/>
+    <link href="http://vgmoose.github.io/red-hat-scrub//blog/2014/05/22/day-02-orientation-part-2/"/>
     <updated>2014-05-22T02:24:20-04:00</updated>
-    <id>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/22/day-02-orientation-part-2</id>
+    <id>http://vgmoose.github.io/red-hat-scrub//blog/2014/05/22/day-02-orientation-part-2</id>
     <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
 
 <p><img class="center" src="/images/IMG_20140521_090618.jpg"></p>

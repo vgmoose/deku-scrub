@@ -1,49 +1,39 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/19/first-post/
-        </loc>
+        <loc>http://vgmoose.github.io/red-hat-scrub//blog/2014/05/19/first-post/</loc>
         <lastmod>2014-05-19T20:54:44-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/20/orientation-thoughts/
-        </loc>
+        <loc>http://vgmoose.github.io/red-hat-scrub//blog/2014/05/20/orientation-thoughts/</loc>
         <lastmod>2014-05-20T14:22:36-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/21/day-01-orientation/
-        </loc>
+        <loc>http://vgmoose.github.io/red-hat-scrub//blog/2014/05/21/day-01-orientation/</loc>
         <lastmod>2014-05-26T02:23:39-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/22/day-02-orientation-part-2/
+            http://vgmoose.github.io/red-hat-scrub//blog/2014/05/22/day-02-orientation-part-2/
         </loc>
         <lastmod>2014-05-26T04:00:06-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/2014/05/23/day-03-cubicle-sweet-cubicle/
+            http://vgmoose.github.io/red-hat-scrub//blog/2014/05/23/day-03-cubicle-sweet-cubicle/
         </loc>
         <lastmod>2014-05-26T04:56:11-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//blog/archives/
-        </loc>
+        <loc>http://vgmoose.github.io/red-hat-scrub//blog/archives/</loc>
         <lastmod>2014-05-26T04:56:11-04:00</lastmod>
     </url>
     <url>
-        <loc>http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//</loc>
-        <lastmod>2014-05-26T04:56:11-04:00</lastmod>
+        <loc>http://vgmoose.github.io/red-hat-scrub//</loc>
+        <lastmod>2014-05-26T23:00:47-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//robots.txt
-        </loc>
+        <loc>http://vgmoose.github.io/red-hat-scrub//robots.txt</loc>
         <lastmod>2014-05-19T20:32:05-04:00</lastmod>
     </url>
 </urlset>
