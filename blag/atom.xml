@@ -4,7 +4,7 @@
   <title><![CDATA[Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-05-26T23:57:56-04:00</updated>
+  <updated>2014-05-27T00:05:24-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -22,11 +22,11 @@
 
 <p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/IMG_20140523_112111.jpg"></p>
+<p><img class="center" src="images/IMG_20140523_112111.jpg"></p>
 
 <p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/500004774-03-01.jpeg"></p>
+<p><img class="center" src="images/500004774-03-01.jpeg"></p>
 
 <p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
 
@@ -34,7 +34,7 @@
 
 <p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/IMG_20140523_112117.jpg"></p>
+<p><img class="center" src="images/IMG_20140523_112117.jpg"></p>
 
 <p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
 
@@ -49,9 +49,9 @@ Drive 2: full RAID member 2</p>
 
 <p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/chickensandwich.jpg"></p>
+<p><img class="center" src="images/chickensandwich.jpg"></p>
 
-<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="//vgmoose.github.io/deku-scrub/blag//images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="//vgmoose.github.io/deku-scrub/blag//images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
 
 <p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
 
@@ -66,11 +66,11 @@ Drive 2: full RAID member 2</p>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
     <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/IMG_20140521_090618.jpg"></p>
+<p><img class="center" src="images/IMG_20140521_090618.jpg"></p>
 
 <p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/IMG_20140522_120209.jpg"></p>
+<p><img class="center" src="images/IMG_20140522_120209.jpg"></p>
 
 <p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
 
@@ -116,7 +116,7 @@ Drive 2: full RAID member 2</p>
 
 <p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/sandies.jpg"></p>
+<p><img class="center" src="images/sandies.jpg"></p>
 
 <p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
 
@@ -126,7 +126,7 @@ Drive 2: full RAID member 2</p>
 
 <p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/Sad-pug.jpg"></p>
+<p><img class="center" src="images/Sad-pug.jpg"></p>
 
 <p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
 
@@ -163,19 +163,19 @@ Drive 2: full RAID member 2</p>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/21/day-01-orientation</id>
     <content type="html"><![CDATA[<p>So today was officially Day One of the Red Hat Summer Internship orientation. And you know what that means, children, do you not?</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/Red_Hat.jpg"></p>
+<p><img class="center" src="images/Red_Hat.jpg"></p>
 
 <p>THE DAY WAS UPON US. Let me clear up a few misconceptions first. The first of which being, driving is a rather difficult process. The entire route consists of this exactly: turn right, left, right, right, left, straight for a relatively long time, left, and then a right turn into the Red Hat Westford office. Upon arriving, I was instructed to park &lsquo;round back. I did this as instructed properly so that was good. I looked to my left and there was another intern-sized person parking directly next to me. After entertaining the idea of sparking a lovely conversation with him, I declined,</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/Red-Hat_3.jpg"></p>
+<p><img class="center" src="images/Red-Hat_3.jpg"></p>
 
 <p>Pictured above is the lovely abode. Also I should note to myself there&rsquo;s probably a neat and cool way to get inline captions on the images so I don&rsquo;t have to keep referring to them after they appear. After entering via the pictured entrance, they gave me the greatest gift they would ever give me that day. I will now describe it to you, but you can also look it up yourself on google images by searching &ldquo;cool security retractable clip id thing&rdquo;. Basically, it&rsquo;s a cool security retractable clip for your id thing. To break that down into terms that make sense: they gave us temporary (no photo yet) rfid cards and are on a retractable string that clips onto your pocket. It&rsquo;s REALLY cool. Picture scanning into a building at UMA, but instead of having to then put the card back in your pocket, you can just drop it, and then it will magically hookshot back onto you. Yes I am Link, that is the story.</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/quote-first-they-ignore-you-then-they-laugh-at-you-then-they-fight-you-then-you-win-mahatma-gandhi-68010.jpg"></p>
+<p><img class="center" src="images/quote-first-they-ignore-you-then-they-laugh-at-you-then-they-fight-you-then-you-win-mahatma-gandhi-68010.jpg"></p>
 
 <p>Let&rsquo;s talk about culture. So RIGHT when you walk in, and I mean, RIGHT when you walk in. (To clarify, it&rsquo;s a little bit after you walk in and have scanned in with your ID already). You can see the above quote painted in big capital letters on the wall. I didn&rsquo;t think it was fitting <em>at the time.</em> That was before they got all up in my mind though with their englightning words. The whole intern debriefing was pretty boring, but when they got around to explaining the quote I was very interested. Picture this, the year is 1996 and you decide to literally enter the business of selling free software. That is, you are selling the support for the software. At this time, big ole fat companies are all using Big Ole Microsoft server to power their servers. But you step up to bat with your free software / paid support combo and compete against their product. Look I&rsquo;ve become less inspired while writing this now, but basically the quote is about Microsoft. First they ignore you, then they laugh at you, then they fight you, <a href="https://secure1.securityspace.com/s_survey/data/man.201211/apacheos.html">then you win</a>. (It is worth noting in this image (and as they were keen to point out) that Red Hat recently acquired CentOS).</p>
 
-<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//images/image-6-for-a-tribute-for-the-anniversary-of-ice-cream-sundae-s-gallery-668896257.jpg"></p>
+<p><img class="center" src="images/image-6-for-a-tribute-for-the-anniversary-of-ice-cream-sundae-s-gallery-668896257.jpg"></p>
 
 <p>This was not the ice cream that we had at the social but it was pretty good. The other interns are also nice, but I might not be seeing much of them on the lvm team. Over ice cream (which I ate with Tom, my manager), he informed me that the lvm team actually consists of only 13 people, and they are scattered across the world, and only 2 other people are in the Westford office.</p>
 ]]></content>
@@ -190,23 +190,23 @@ Drive 2: full RAID member 2</p>
 
 <p>Here is the schedule for the two days:</p>
 
-<p><img class="center" src="images/orientation.png"></p>
+<p><img class="center {{ root_url" src="}}/orientation.png"></p>
 
 <p>The notable things that I&rsquo;ve taken away from the schedule are the 10 minute &ldquo;Intro and Icebreaker&rdquo; at 9:35, which I&rsquo;m hoping will not be horribly embarrassing in any way shape or form. An hour long talk about &ldquo;Ethics and Legal&rdquo; does not sound like it would be terribly interesting either.</p>
 
 <p>The &ldquo;Ice Cream Social&rdquo; event, at first glance, appears childish. Upon closer inspection though, it is likely very important that it should happen. That is all that needs to be said about that.</p>
 
-<p><img class="center" src="root_url/images/interns.jpeg"></p>
+<p><img class="center" src="//vgmoose.github.io/deku-scrub/blag//deku-scrub/blag/images/interns.jpeg"></p>
 
 <p>Pictured above is a team of interns from a previous year. I realize now that I have started writing these things that I don&rsquo;t know why I am writing them. Okay. Good post.</p>
 
-<p><img class="center" src="{root_url}/images/snakes.jpg"></p>
+<p><img class="center { root_url" src="//vgmoose.github.io/deku-scrub/blag//images/snakes.jpg"></p>
 
 <p>omgeee omega ruby and alpha sapphire yeeaaa boiii</p>
 
 <p>I also spent some time today working on customizing a Fedora install and a picture of that is below.</p>
 
-<p><img class="center {root_url" src="//vgmoose.github.io/deku-scrub/blag//images/fedora_setup.png"></p>
+<p><img class="center {{ root_url" src="images/fedora_setup.png"></p>
 
 <p>Please don&rsquo;t hate me Chris, because I now love Fedora and obviously hate Debian, for it is the devil. We also love gnome3 and&hellip; qupzilla. That is all.</p>
 ]]></content>
