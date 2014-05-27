@@ -1,4 +1,4 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://vgmoose.github.io/red-hat-scrub/9d85a4016796366f0b182ea654be3e40//sitemap.xml 
+U2FsdGVkX1+I0QVosEHyPsRDgmg6fd1zI+gtqjoFK/drIUN3lg7h7fcdvKNP
+Ut62blfrNSI02Y0fwztIttg5BHIU5M3nMKmQ4oSTitZVcGHb5lPWMvR6bE5L
+x8cl2N4000BCyTuuiLnby661HCSYS0yMtpcN2RjCVnqL+nrUGsC5QJgOh5w3
+JEittWFaejFu
