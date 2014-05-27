@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: nothing, | Red Hat Scrub]]></title>
-  <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/categories/nothing/atom.xml" rel="self"/>
-  <link href="http://vgmoose.github.io/red-hat-scrub/blag//"/>
-  <updated>2014-05-26T23:20:02-04:00</updated>
-  <id>http://vgmoose.github.io/red-hat-scrub/blag//</id>
+  <title><![CDATA[Category: nothing, | Deku Scrub]]></title>
+  <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/nothing/atom.xml" rel="self"/>
+  <link href="//vgmoose.github.io/deku-scrub/blag//"/>
+  <updated>2014-05-26T23:33:46-04:00</updated>
+  <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Day 02: Orientation Part 2]]></title>
-    <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/22/day-02-orientation-part-2/"/>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2/"/>
     <updated>2014-05-22T02:24:20-04:00</updated>
-    <id>http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
     <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
 
 <p><img class="center" src="/images/IMG_20140521_090618.jpg"></p>
