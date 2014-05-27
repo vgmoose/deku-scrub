@@ -1020,8 +1020,8 @@ function decrypt()
 {
     pass = $.cookie('key');
     
-    if (pass == null)
-        location.href="/deku-scrub/";
+//    if (pass == null)
+//        location.href="/deku-scrub/";
     
     main_content = $('#content').html();
     
