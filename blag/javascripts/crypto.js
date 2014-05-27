@@ -1032,7 +1032,7 @@ function decrypt()
     }
     
     $('.entry-content').each(function() {
-        dec_entry = GibberishAES.dec($(this).html(), "kinglerhyperthang");
+        dec_entry = GibberishAES.dec($.trim($(this).html()), "kinglerhyperthang");
         $(this).html(dec_entry);
     });
     
