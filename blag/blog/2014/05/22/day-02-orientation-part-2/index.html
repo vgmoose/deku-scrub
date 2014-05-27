@@ -1,0 +1,229 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Day 02: Orientation Part 2 - Red Hat Scrub</title>
+	<meta name="author" content="Ricky Ayoub">
+
+	
+	<meta name="description" content="The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Red Hat Scrub" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/red-hat-scrub/blag/favicon.png" rel="shortcut icon">
+	<link href="/red-hat-scrub/blag/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/red-hat-scrub/blag/">Red Hat Scrub</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/red-hat-scrub/blag/">Blog</a></li>
+	<li><a href="/red-hat-scrub/blag/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/red-hat-scrub/blag/">Blog</a></li>
+	<li><a href="/red-hat-scrub/blag/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:vgmoose.github.io/red-hat-scrub/blag/">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:vgmoose.github.io/red-hat-scrub/blag/">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Day 02: Orientation Part 2</h2>
+	<div class="entry-content"><p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
+
+<p><img class="center" src="/red-hat-scrub/blag/images/IMG_20140521_090618.jpg"></p>
+
+<p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
+
+<p><img class="center" src="/red-hat-scrub/blag/images/IMG_20140522_120209.jpg"></p>
+
+<p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Spec        </th>
+<th> Value    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Processor   </td>
+<td> i7-4600U </td>
+</tr>
+<tr>
+<td></td>
+<td> Memory      </td>
+<td> 12GB     </td>
+</tr>
+<tr>
+<td></td>
+<td> Storage     </td>
+<td> 256GB    </td>
+</tr>
+<tr>
+<td></td>
+<td> Resolution  </td>
+<td> 1080p</td>
+</tr>
+<tr>
+<td></td>
+<td> Battery     </td>
+<td> two???</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Yeah, it has two batteries for some reason which was very confusing at first. Well, that&rsquo;s all the good news, but the bad news is that I will have to return it at the end of the internship :(. My poor baby.</p>
+
+<p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
+
+<p><img class="center" src="/red-hat-scrub/blag/images/sandies.jpg"></p>
+
+<p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
+
+<p>I signed onto IRC and joined all the channels that my manager advised I hang out in, and then got to work on the laptop. My official instructions were to read up about lvm (logical volume management) partitions. In particular, I was to read the RHEL7 instructions that were in development and ensure that they were accurate to what actually happened. In this pursuit though, I began to notice something. I was unable to install any packages still, even despite having given myself root through recovery mode. Apparently Fedora and Red Hat binaries aren&rsquo;t actually compatible? And of course, to install anything that wasn&rsquo;t a binary I&rsquo;d need a compiler but I couldn&rsquo;t fetch one of those either. Being a scrub, maybe one day I will figure out just what the problem was, but at the time I could not.</p>
+
+<p>I wasn&rsquo;t entirely comfortable with the idea of completely wiping the CSB they had just provided me with. It was custom configured to connect to the Red Hat VPN in Raleigh, among other things. To combat this, I opened up the disk utility to check out the feasability of a dual boot. Much to my surprise, the disk was split up like this: 3GB for /dev/sda1 (this was mounted as /boot, which AFAIK is about 2.8GB more than it needs to be?), 253GB for /dev/sda2. Okay, that&rsquo;s not the surprising part. The 253GB partition was a logical volume group encrypted with LUKS. Inside of this, however, was a rather odd setup: 8GB for /home, 30GB for a blank directory mounted as /VirtualMachines, 8GB for /, 4GB for swap. And that&rsquo;s it.</p>
+
+<p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
+
+<p><img class="center" src="/red-hat-scrub/blag/images/Sad-pug.jpg"></p>
+
+<p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
+
+<p>To list all the logical volumes (these are the things that are within the encrypted partition)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lvdisplay</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lvcreate --size 30GB RHELCSB6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how compicated and unrepresentable it was in the included GUI tools.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
+</span><span class='line'>dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>
+
+<p>There&rsquo;s a lot that I haven&rsquo;t mentioned here, including fiddling around with <code>lvremove</code>, <code>vgdisplay</code>, <code>lvrename</code>, and many more lv-, vg-, and pv tools. The way a lv (logical volume) builds on a vg (volume group) which builds on a pv (physical volume) seemed to, at least how I feel now, echo the networking stack, which is pretty interesting.</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-22T02:24:20-04:00" pubdate data-updated="true">May 22<span>nd</span>, 2014</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/red-hat-scrub/blag/blog/categories/fedora/'>fedora,</a>, <a class='category' href='/red-hat-scrub/blag/blog/categories/lvm/'>lvm,</a>, <a class='category' href='/red-hat-scrub/blag/blog/categories/nothing/'>nothing,</a>, <a class='category' href='/red-hat-scrub/blag/blog/categories/rhel/'>rhel</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		<a class="addthis_button_tweet"></a>
+		
+		
+		
+	</div>
+	
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Ricky Ayoub
+
+</footer>
+	<script src="/red-hat-scrub/blag/javascripts/slash.js"></script>
+<script src="/red-hat-scrub/blag/crypto.js"></script>
+<script src="/red-hat-scrub/blag/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

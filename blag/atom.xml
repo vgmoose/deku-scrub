@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Red Hat Scrub]]></title>
+  <link href="http://vgmoose.github.io/red-hat-scrub/blag//atom.xml" rel="self"/>
+  <link href="http://vgmoose.github.io/red-hat-scrub/blag//"/>
+  <updated>2014-05-26T23:20:02-04:00</updated>
+  <id>http://vgmoose.github.io/red-hat-scrub/blag//</id>
+  <author>
+    <name><![CDATA[Ricky Ayoub]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Day 03: Cubicle Sweet Cubicle]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle/"/>
+    <updated>2014-05-23T04:06:11-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle</id>
+    <content type="html"><![CDATA[<p>This was the first &ldquo;real&rdquo; work day here, without any intern specific activities, and also a Friday. When I arrived and parked in a spot in the back of the building, with my new babby laptop in tow, I really, for a brief moment, felt like a functioning member of society. I heroically scanned into the building using my incredibly and extremely fancy spider-man web-launcher style security card, only to become INSTANTLY lost in the maze that was the building. After eventually making my way to the Cube (and making a stop for a bagel in the break room)</p>
+
+<p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/IMG_20140523_112111.jpg"></p>
+
+<p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/500004774-03-01.jpeg"></p>
+
+<p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
+
+<p>Okay, but those computers were nothing in comparison to my dinosaurs. Here are the specs, again in convenient table format.</p>
+
+<p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/IMG_20140523_112117.jpg"></p>
+
+<p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
+
+<p>Drive 1: 200mb /boot, remaining space RAID member 2
+Drive 2: full RAID member 2</p>
+
+<p>RAID: one logical volume group</p>
+
+<p>volume group: 10GB logical volume for /, 4GB swap, 50GB logical volume for /home</p>
+
+<p>You might think that&rsquo;s all boring, but it (should mean) that anything at all that happens to any of the volumes within the volume group would be completely synced across drives. That is, if one drive were to fail completely, all of the data would remain intact.</p>
+
+<p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/chickensandwich.jpg"></p>
+
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="http://vgmoose.github.io/red-hat-scrub/blag//images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="http://vgmoose.github.io/red-hat-scrub/blag//images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+
+<p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
+
+<p>Yes, that is what I leave you with.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 02: Orientation Part 2]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/22/day-02-orientation-part-2/"/>
+    <updated>2014-05-22T02:24:20-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
+    <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/IMG_20140521_090618.jpg"></p>
+
+<p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/IMG_20140522_120209.jpg"></p>
+
+<p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Spec        </th>
+<th> Value    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Processor   </td>
+<td> i7-4600U </td>
+</tr>
+<tr>
+<td></td>
+<td> Memory      </td>
+<td> 12GB     </td>
+</tr>
+<tr>
+<td></td>
+<td> Storage     </td>
+<td> 256GB    </td>
+</tr>
+<tr>
+<td></td>
+<td> Resolution  </td>
+<td> 1080p</td>
+</tr>
+<tr>
+<td></td>
+<td> Battery     </td>
+<td> two???</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Yeah, it has two batteries for some reason which was very confusing at first. Well, that&rsquo;s all the good news, but the bad news is that I will have to return it at the end of the internship :(. My poor baby.</p>
+
+<p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/sandies.jpg"></p>
+
+<p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
+
+<p>I signed onto IRC and joined all the channels that my manager advised I hang out in, and then got to work on the laptop. My official instructions were to read up about lvm (logical volume management) partitions. In particular, I was to read the RHEL7 instructions that were in development and ensure that they were accurate to what actually happened. In this pursuit though, I began to notice something. I was unable to install any packages still, even despite having given myself root through recovery mode. Apparently Fedora and Red Hat binaries aren&rsquo;t actually compatible? And of course, to install anything that wasn&rsquo;t a binary I&rsquo;d need a compiler but I couldn&rsquo;t fetch one of those either. Being a scrub, maybe one day I will figure out just what the problem was, but at the time I could not.</p>
+
+<p>I wasn&rsquo;t entirely comfortable with the idea of completely wiping the CSB they had just provided me with. It was custom configured to connect to the Red Hat VPN in Raleigh, among other things. To combat this, I opened up the disk utility to check out the feasability of a dual boot. Much to my surprise, the disk was split up like this: 3GB for /dev/sda1 (this was mounted as /boot, which AFAIK is about 2.8GB more than it needs to be?), 253GB for /dev/sda2. Okay, that&rsquo;s not the surprising part. The 253GB partition was a logical volume group encrypted with LUKS. Inside of this, however, was a rather odd setup: 8GB for /home, 30GB for a blank directory mounted as /VirtualMachines, 8GB for /, 4GB for swap. And that&rsquo;s it.</p>
+
+<p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/Sad-pug.jpg"></p>
+
+<p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
+
+<p>To list all the logical volumes (these are the things that are within the encrypted partition)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lvdisplay</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lvcreate --size 30GB RHELCSB6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how compicated and unrepresentable it was in the included GUI tools.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
+</span><span class='line'>dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>
+
+<p>There&rsquo;s a lot that I haven&rsquo;t mentioned here, including fiddling around with <code>lvremove</code>, <code>vgdisplay</code>, <code>lvrename</code>, and many more lv-, vg-, and pv tools. The way a lv (logical volume) builds on a vg (volume group) which builds on a pv (physical volume) seemed to, at least how I feel now, echo the networking stack, which is pretty interesting.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 01: Orientation]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/21/day-01-orientation/"/>
+    <updated>2014-05-21T20:33:49-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/21/day-01-orientation</id>
+    <content type="html"><![CDATA[<p>So today was officially Day One of the Red Hat Summer Internship orientation. And you know what that means, children, do you not?</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/Red_Hat.jpg"></p>
+
+<p>THE DAY WAS UPON US. Let me clear up a few misconceptions first. The first of which being, driving is a rather difficult process. The entire route consists of this exactly: turn right, left, right, right, left, straight for a relatively long time, left, and then a right turn into the Red Hat Westford office. Upon arriving, I was instructed to park &lsquo;round back. I did this as instructed properly so that was good. I looked to my left and there was another intern-sized person parking directly next to me. After entertaining the idea of sparking a lovely conversation with him, I declined,</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/Red-Hat_3.jpg"></p>
+
+<p>Pictured above is the lovely abode. Also I should note to myself there&rsquo;s probably a neat and cool way to get inline captions on the images so I don&rsquo;t have to keep referring to them after they appear. After entering via the pictured entrance, they gave me the greatest gift they would ever give me that day. I will now describe it to you, but you can also look it up yourself on google images by searching &ldquo;cool security retractable clip id thing&rdquo;. Basically, it&rsquo;s a cool security retractable clip for your id thing. To break that down into terms that make sense: they gave us temporary (no photo yet) rfid cards and are on a retractable string that clips onto your pocket. It&rsquo;s REALLY cool. Picture scanning into a building at UMA, but instead of having to then put the card back in your pocket, you can just drop it, and then it will magically hookshot back onto you. Yes I am Link, that is the story.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/quote-first-they-ignore-you-then-they-laugh-at-you-then-they-fight-you-then-you-win-mahatma-gandhi-68010.jpg"></p>
+
+<p>Let&rsquo;s talk about culture. So RIGHT when you walk in, and I mean, RIGHT when you walk in. (To clarify, it&rsquo;s a little bit after you walk in and have scanned in with your ID already). You can see the above quote painted in big capital letters on the wall. I didn&rsquo;t think it was fitting <em>at the time.</em> That was before they got all up in my mind though with their englightning words. The whole intern debriefing was pretty boring, but when they got around to explaining the quote I was very interested. Picture this, the year is 1996 and you decide to literally enter the business of selling free software. That is, you are selling the support for the software. At this time, big ole fat companies are all using Big Ole Microsoft server to power their servers. But you step up to bat with your free software / paid support combo and compete against their product. Look I&rsquo;ve become less inspired while writing this now, but basically the quote is about Microsoft. First they ignore you, then they laugh at you, then they fight you, <a href="https://secure1.securityspace.com/s_survey/data/man.201211/apacheos.html">then you win</a>. (It is worth noting in this image (and as they were keen to point out) that Red Hat recently acquired CentOS).</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/image-6-for-a-tribute-for-the-anniversary-of-ice-cream-sundae-s-gallery-668896257.jpg"></p>
+
+<p>This was not the ice cream that we had at the social but it was pretty good. The other interns are also nice, but I might not be seeing much of them on the lvm team. Over ice cream (which I ate with Tom, my manager), he informed me that the lvm team actually consists of only 13 people, and they are scattered across the world, and only 2 other people are in the Westford office.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Orientation Thoughts]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/20/orientation-thoughts/"/>
+    <updated>2014-05-20T01:34:32-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/20/orientation-thoughts</id>
+    <content type="html"><![CDATA[<p>The Red Hat two day orientation is coming up fast. It looks like it&rsquo;s going to be pretty fun, but there is no way to be 100% sure.</p>
+
+<p>Here is the schedule for the two days:</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/orientation.png"></p>
+
+<p>The notable things that I&rsquo;ve taken away from the schedule are the 10 minute &ldquo;Intro and Icebreaker&rdquo; at 9:35, which I&rsquo;m hoping will not be horribly embarrassing in any way shape or form. An hour long talk about &ldquo;Ethics and Legal&rdquo; does not sound like it would be terribly interesting either.</p>
+
+<p>The &ldquo;Ice Cream Social&rdquo; event, at first glance, appears childish. Upon closer inspection though, it is likely very important that it should happen. That is all that needs to be said about that.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/interns.jpeg"></p>
+
+<p>Pictured above is a team of interns from a previous year. I realize now that I have started writing these things that I don&rsquo;t know why I am writing them. Okay. Good post.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/snakes.jpg"></p>
+
+<p>omgeee omega ruby and alpha sapphire yeeaaa boiii</p>
+
+<p>I also spent some time today working on customizing a Fedora install and a picture of that is below.</p>
+
+<p><img class="center" src="http://vgmoose.github.io/red-hat-scrub/blag//images/fedora_setup.png"></p>
+
+<p>Please don&rsquo;t hate me Chris, because I now love Fedora and obviously hate Debian, for it is the devil. We also love gnome3 and&hellip; qupzilla. That is all.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[First post]]></title>
+    <link href="http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/19/first-post/"/>
+    <updated>2014-05-19T20:54:05-04:00</updated>
+    <id>http://vgmoose.github.io/red-hat-scrub/blag//blog/2014/05/19/first-post</id>
+    <content type="html"><![CDATA[<p>This is the first post.</p>
+]]></content>
+  </entry>
+  
+</feed>
