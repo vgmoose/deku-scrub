@@ -165,7 +165,7 @@ function auth() {
     
     if ($.cookie("key") != null)
     {
-        document.getElementById('aaa').innerHTML = $.cookie("key");
+        document.getElementById('aaa').value = $.cookie("key");
         logEmIn();
     }
     
