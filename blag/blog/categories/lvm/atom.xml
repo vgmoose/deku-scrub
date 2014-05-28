@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvm | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvm/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-05-27T01:37:59-04:00</updated>
+  <updated>2014-05-28T00:51:03-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 04: Thin Provisioning]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning/"/>
+    <updated>2014-05-27T18:32:05-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning</id>
+    <content type="html"><![CDATA[<p>We&rsquo;re jumping right into this, because it&rsquo;s pretty crazy. Like, mad crazy son. I haven&rsquo;t talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 03: Cubicle Sweet Cubicle]]></title>
