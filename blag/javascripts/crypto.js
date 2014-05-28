@@ -1034,8 +1034,13 @@ function decrypt()
     $('.entry-content').each(function() {
         dec_entry = GibberishAES.dec($.trim($(this).html()), pass);
         $(this).html(dec_entry);
-        $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
     });
+    
+    //hack
+    $('.title').each(function() {
+                     $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
+                     });
+
     
 }
 
