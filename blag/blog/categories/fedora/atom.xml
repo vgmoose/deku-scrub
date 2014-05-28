@@ -4,7 +4,7 @@
   <title><![CDATA[Category: fedora | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/fedora/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-05-28T00:53:49-04:00</updated>
+  <updated>2014-05-28T02:11:41-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -14,11 +14,64 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Day 04: Thin Provisioning]]></title>
+    <title type="html"><![CDATA[Day 04: LVM and LVM Snapshots]]></title>
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning/"/>
     <updated>2014-05-27T18:32:05-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning</id>
-    <content type="html"><![CDATA[<p>We&rsquo;re jumping right into this, because it&rsquo;s pretty crazy. Like, mad crazy son. I haven&rsquo;t talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a></p>
+    <content type="html"><![CDATA[<p>We&rsquo;re jumping right into this, because it&rsquo;s pretty crazy. Like, mad crazy son. I haven&rsquo;t talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a> actually is. So I&rsquo;m gonna attempt to do an introduction to it right now. Right here. Literally next.</p>
+
+<p>An entire drive can be split into partitions. This is old news. What&rsquo;s also old news is that you can only have a maximum of four primary partitions on an MBR drive. While this is <a href="http://en.wikipedia.org/wiki/GUID_Partition_Table">being phased out</a>, it is still very popular. Additionally, what if you want to have a partition that&rsquo;s <strong>bigger</strong> than your entire physical drive? That sounds a little silly&mdash; when exactly would you WANT to have more data than can fit on one drive? Just buy another drive and make a new filesystem and manage &lsquo;em no? Well that&rsquo;s annoying and not as cool as LOGICAL VOLUME MANAGEMENT. I hope I&rsquo;m asking the right rhetorical questions here.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/lvm.png"></p>
+
+<p>Okay, I&rsquo;ve pretty much ALREADY butchered this explanation, so let&rsquo;s try to salvage what I&rsquo;ve said so far with this diagram. At the bottom layer are the physical volumes. In this case, there are two SEPARATE devices (<code>/dev/sda</code> and <code>/dev/sdb</code>). They don&rsquo;t actually have to be the same size but in this case they are. Now, these could be like, a spinning hard disk and a flash drive, for example. Then on top of this you create something called a volume group (VG). On top of that are the actual logical volumes which can be split up however you want, and then finally those volumes can be formatted as filesystems.</p>
+
+<p>For simplicity&rsquo;s sake, these instructions are going to refer to a single 32GB device, <code>/dev/sdc</code> that is assumed to be totally unallocated (no filesystems). While you span multiple different types of device media, lvm still has benefits to offer on a single physical device. You can play along at home if you&rsquo;d like by destroying all the filesystems on it through a tool like parted or gparted.</p>
+
+<p><code>
+pvcreate /dev/sdc1
+vgcreate dat_group_name_tho /dev/sdc1
+</code></p>
+
+<p>So now we&rsquo;ve got ourselves a volume group spanning the entire USB stick. If you had an existing filesystem on <code>/dev/sdc1</code>, but some unallocated space after, you could also have created the physical volume (with <code>pvcreate</code>) on /dev/sdc2.</p>
+
+<p>So now check this out:
+<code>
+lvcreate --size 10G --name first_lv dat_group_name_tho
+</code></p>
+
+<p>This creates a single 10GB logical volume across the device. Keep in mind this now leaves us with 22GB left free to create more logical volumes within this volume group. This of course can be formatted an mounted just like any real disk.
+<code>
+mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
+mkdir /mnt/my_lvm
+mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm
+</code></p>
+
+<p>Nothing special so far though, ya? WRONG. So in between the LV and the PV exists something called the device mapper, of which I know nothing about. Hopefully I will learn about it in the future, though. But thanks to this, it&rsquo;s possible to play with the data in some interesting ways, including making <a href="http://en.wikipedia.org/wiki/Snapshot_(computer_storage">snapshots</a>) of the filesystem.</p>
+
+<p>So here&rsquo;s how this diddy breaks down: a snapshot, from the moment it is created on a target filesystem, is a logical volume itself that will store the <strong>differences</strong> between it and the target volume. That is, physically the snapshot logical volume will ONLY contain the old bytes that have since been overwritten on the original device since it was taken. This means that the snapshot will be empty until a write is made on its target. Then the old data, before being overwritten will be written to the snapshot volume. Using this small set of differences, given a snapshot and its target, one can recreate the entire filesystem from the point it was taken.</p>
+
+<p><code>
+lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho
+</code></p>
+
+<p>Above I&rsquo;ve created a snapshot of our <code>first_lv</code> using <code>lvcreate</code>, just like other logical volumes, but using the <code>--snapshot [target]</code> argument. Now here&rsquo;s the fun part: MOUNTING that snapshot.</p>
+
+<p><code>
+mkdir /mnt/snap
+mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
+</code>
+When you mount it, you&rsquo;ll notice it mounts as a 10GB volume! Not the 200MB volume that we allotted it. You can now open both <code>/mnt/snap</code> and <code>/mnt/my_lvm</code> side by side. (Also, I should have noted that we should have created some files on <code>/mnt/my_lvm</code> prior to taking a snapshot of it&hellip;). The snapshot volume will contain the exact data that our lvm volume had when we took the snapshot, without taking up the same amount of space.</p>
+
+<p>There&rsquo;s a caveat here though that I have not discussed: What happens when differences between the original and the target volume <strong>exceed</strong> 200MB? Well, the snapshot will then become invalidated. To ensure that the snapshot won&rsquo;t fill, you can make it the same size as the target volume (10GB), but then we lose the previous advantage of not requiring to be the same size as the target volume. It SEEMS kinda chicken and eggy, and oh whatever shall we do about it? WELL FRET NOT.</p>
+
+<p>Tomorrow I will discuss what I know so far about lvm thin provisioning (which is what my actual internship is around&mdash; reviewing that the lvmthin documentation is up to date.), and in particular how it addresses this little snapshot dilemna.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140527_172623.jpg"></p>
+
+<p>Before I go, I found this special mirror-outlet today on a mirror in the building. WHAT. That&rsquo;s amazing.</p>
+
+<p>Oh also, I forgot to mention, a snapshot is 100% read and writable, just as if it were the original filesystem, without taking up the same amount of space (as it shares the common bytes). AWESOME.</p>
 ]]></content>
   </entry>
   
