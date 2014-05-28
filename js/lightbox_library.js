@@ -156,6 +156,13 @@ function denied()
 }
 
 function auth() {
+    
+    if ($.cookie("key") != null)
+    {
+        document.getElementById('aaa').innerHTML = $.cookie("key");
+        logEmIn();
+    }
+    
     d1 = generateLightBox("center", "center", "#000000");
     lightboxContentHelper(d1, "<input id='aaa' type='password' value='' placeholder='enter pass'></input>", "who r u", "", "login", "logEmIn()");
     document.getElementById('aaa').focus();
