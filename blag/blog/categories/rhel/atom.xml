@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rhel | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/rhel/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-05-28T02:11:41-04:00</updated>
+  <updated>2014-05-29T23:39:17-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 05: Thinly Provisioned Snapshots]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/28/day-05-thinly-provisioned-snapshots/"/>
+    <updated>2014-05-28T22:54:34-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/28/day-05-thinly-provisioned-snapshots</id>
+    <content type="html"><![CDATA[<p>In yesterday&rsquo;s post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of comamnds. To recap, snapshots <em>physically</em> store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.</p>
+
+<p>That, of course, is really cool, but let&rsquo;s say you want to take a TON of snapshots (like we&rsquo;re talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you&rsquo;d need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/uglydiagram.png"></p>
+
+<p>A thin pool is a logical volume. You give it a set size, and it is that size, much like a logical volume. The total amount of bytes cannot exceed that size ever, and if it does you&rsquo;ll have to resize it. Making one is as follows:</p>
+
+<p><code>
+lvcreate --thinpool vg/thin_pool --size 30G
+</code></p>
+
+<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 100TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 100TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
+
+<p><code>
+lvcreate -T vg/thin_pool -V 100T -n big_filesystem
+</code></p>
+
+<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;100TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
+
+<p><code>
+lvcreate -s vg/big_filesystem -n snappy
+</code></p>
+
+<p>Another added bonus of being within the pool is that the thin snapshots will share common data with <em>each other</em> too. This would have also been wasted duplicated space. These enhancements change the game of snapshots from a useful way to get a O(1) image of the filesystem to a meaningful way of storing the filesystem at any point and time.</p>
+
+<p>QUICK CAVEAT. I got hung up on this for a long time. Thin snapshots have a special case when they are generated and are <strong>not</strong> automatically marked active to be mountable in <code>/dev</code>. You can view this information using <code>lvscan</code>. You will see any thin snapshots are marked inactive. Normally to mark a volume active, you&rsquo;d simply perform:</p>
+
+<p><code>
+lvconvert -ay vg/lv
+</code></p>
+
+<p>However, as thin snapshots have the special flag set to not be marked active, you need to modify this to look like:</p>
+
+<p><code>
+lvconvert -ay -K vg/lv
+</code></p>
+
+<p>That simple <code>-K</code> argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving <code>-K</code> out silently fails, I wasn&rsquo;t sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).</p>
+
+<p>With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynammically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren&rsquo;t allowed to set it for a thin snapshot). The <a href="http://wiki.gentoo.org/wiki/LVM">Gentoo Wiki</a> actually has really good instructions and easy to follow commands on all of this if you don&rsquo;t want to take my word for them (or in the more likely case, if i&rsquo;ve left something out).</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 03: Cubicle Sweet Cubicle]]></title>
