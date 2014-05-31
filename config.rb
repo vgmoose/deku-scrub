@@ -4,9 +4,9 @@ require 'sass-globbing'
 project_type = :stand_alone
 
 # Publishing paths
-http_path = "/red-hat-scrub/9d85a4016796366f0b182ea654be3e40/"
-http_images_path = "/images"
-http_generated_images_path = "/images"
+http_path = "/deku-scrub/blag/"
+http_images_path = "/deku-scrub/blag/images"
+http_generated_images_path = "/deku-scrub/blag/images"
 http_fonts_path = "/fonts"
 css_dir = "public/stylesheets"
 

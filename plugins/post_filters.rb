@@ -18,6 +18,7 @@ module Jekyll
     #Use the post object to modify it's contents before the
     #post is inserted into the template.
     def post_render(post)
+        post.upcase!
     end
 
     #Called after the post is written to the disk.
