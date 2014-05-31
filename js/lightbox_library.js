@@ -137,7 +137,8 @@ function logEmIn()
            type:'GET',
            async: false,
            success: function(data){
-           $.cookie("key", pass);
+           var date = new Date();
+           $.cookie("key", pass, {expires: date.getTime() + 30000000000});
            location.href = '/deku-scrub/blag/';
            bool = false;
            }
