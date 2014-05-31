@@ -1040,6 +1040,10 @@ function decrypt()
     $('.title').each(function() {
                      $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
                      });
+    
+    // also a hack
+    $('h1 a').html("Red Hat Scrub");
+    document.title = "Red Hat Scrub";
 
     
 }
