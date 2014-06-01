@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmthin | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmthin/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T17:44:28-04:00</updated>
+  <updated>2014-06-01T17:48:13-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -21,27 +21,31 @@
     <content type="html"><![CDATA[<p>Happy Friday! I finally feel like I&rsquo;m becoming well-versed with these LVM commands. I&rsquo;m also starting to feel a lot more comfortable in general. It might just be because we&rsquo;re using Thinkpads, but this laptop has byfar been the most comfortable linux experience I&rsquo;ve had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I&rsquo;m being brainwashed by Red Hat, but I&rsquo;m also probably gonna swap out my home server with Fedora instead of Debian.</p>
 
 <p>But that&rsquo;s ALL besides the point. Today I set up a cool thing which I shall now share with you now.
-<code>
-\# lvs
-  LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
-  homey         purin Vwi-aotz--  1.00t thinset          2.24       
-  ...
-  snap05.30.14e purin Vwi---tz-k  1.00t thinset homey               
-  snap05.30.14m purin Vwi---tz-k  1.00t thinset homey               
-  snap06.01.14e purin Vwi---tz-k  1.00t thinset homey               
-  thinset       purin twi-a-tz-- 50.00g                 47.15  25.06
-</code></p>
+```</p>
+
+<h1>lvs</h1>
+
+<p>  LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
+  homey         purin Vwi-aotz&mdash;  1.00t thinset          2.24     <br/>
+  &hellip;
+  snap05.30.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  snap05.30.14m purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  snap06.01.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  thinset       purin twi-a-tz&mdash; 50.00g                 47.15  25.06
+```</p>
 
 <p>Here you can see that I have a 50G lvm thin pool called &ldquo;thinset&rdquo; (at the bottom), and within this pool is a logical thin volume called &ldquo;homey&rdquo;. Then there are three snapshots that use &ldquo;homey&rdquo; as their origin, meaning they are a snapshot of &ldquo;homey,&rdquo; and will copy the required bytes on write to maintain their snapshot state.</p>
 
 <p>What ISN&rsquo;T shown here is that I currently have the &ldquo;homey&rdquo; LV mounted at <code>/home</code></p>
 
-<p><code>
-\# df -h
-..
+<p>```</p>
+
+<h1>df -h</h1>
+
+<p>..
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
-</code></p>
+```</p>
 
 <p>There are the usual interesting things about lvmthin volumes that you can note here, such as <code>df</code> believing the filesystem only has 1% of its &ldquo;1008G&rdquo; used, when in reality the thin pool only has 50G that it is able to allocated. But you can also see that I have snapshots of the form <code>snapMM.DD.YY(e/m)</code>, which are taken daily on that date (with e for evening and m for morning). This was configured via <code>cron</code> by editing <code>/etc/crontab</code> to have the following new lines appended:</p>
 
@@ -85,13 +89,13 @@ lvconvert --merge purin/snapMM.DD.YYz
 lvcreate --thinpool vg/thin_pool --size 30G
 </code></p>
 
-<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 100TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 100TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
+<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 500TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 500TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
 
 <p><code>
-lvcreate -T vg/thin_pool -V 100T -n big_filesystem
+lvcreate -T vg/thin_pool -V 500T -n big_filesystem
 </code></p>
 
-<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;100TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
+<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;500TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
 
 <p><code>
 lvcreate -s vg/big_filesystem -n snappy

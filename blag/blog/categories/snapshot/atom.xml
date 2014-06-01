@@ -4,7 +4,7 @@
   <title><![CDATA[Category: snapshot | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/snapshot/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T17:44:28-04:00</updated>
+  <updated>2014-06-01T17:48:13-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -30,13 +30,13 @@
 lvcreate --thinpool vg/thin_pool --size 30G
 </code></p>
 
-<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 100TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 100TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
+<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 500TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 500TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
 
 <p><code>
-lvcreate -T vg/thin_pool -V 100T -n big_filesystem
+lvcreate -T vg/thin_pool -V 500T -n big_filesystem
 </code></p>
 
-<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;100TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
+<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;500TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
 
 <p><code>
 lvcreate -s vg/big_filesystem -n snappy
