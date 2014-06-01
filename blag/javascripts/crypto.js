@@ -1038,6 +1038,8 @@ function decrypt()
     
     //hack
     $('.title').each(function() {
+    		if ($(this).attr("href").indexOf("deku") > 0)
+		return true;
                      $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
                      });
 
