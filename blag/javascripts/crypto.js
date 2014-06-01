@@ -1044,7 +1044,7 @@ function decrypt()
 	// third hack is the charm
 $('.category').each(function() {
 	if ($(this).attr("href").indexOf("deku") > 0)
-		continue;
+		return true;
                      $(this).attr("href", $(this
                      ).attr("href").replace("/blog/", "/deku-scrub/blag/blog/"));
                      });
