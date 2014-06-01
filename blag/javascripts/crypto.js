@@ -1043,8 +1043,12 @@ function decrypt()
 
 	// third hack is the charm
 $('.category').each(function() {
-                     $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
+                     $(this).attr("href", $(this
+                     ).attr("href").replace("/blog/", "/deku-scrub/blag/blog/"));
                      });
+
+	// last hack
+	$('.rss').attr("href", $('.rss').attr("href").replace("/atom","/deku-scrub/blag/atom"))
     
     // also a hack
     $('h1 a').html("Red Hat Scrub");
