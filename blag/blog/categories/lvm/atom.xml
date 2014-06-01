@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: lvm, | Deku Scrub]]></title>
+  <title><![CDATA[Category: lvm | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvm/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T17:51:25-04:00</updated>
+  <updated>2014-06-01T17:57:05-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -14,97 +14,247 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Day 02: Orientation Part 2]]></title>
-    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2/"/>
-    <updated>2014-05-22T02:24:20-04:00</updated>
-    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2</id>
-    <content type="html"><![CDATA[<p>The beginning of this day was some more regular boring orientation stuff. You know, all thsoe boring rules and what not. OH JUST KIDDING CHECK THIS JAZZ OUT:</p>
+    <title type="html"><![CDATA[Day 07: Daily Time Machine]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine/"/>
+    <updated>2014-05-30T15:51:59-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine</id>
+    <content type="html"><![CDATA[<p>Happy Friday! I finally feel like I&rsquo;m becoming well-versed with these LVM commands. I&rsquo;m also starting to feel a lot more comfortable in general. It might just be because we&rsquo;re using Thinkpads, but this laptop has byfar been the most comfortable linux experience I&rsquo;ve had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I&rsquo;m being brainwashed by Red Hat, but I&rsquo;m also probably gonna swap out my home server with Fedora instead of Debian.</p>
 
-<p><img class="center" src="/deku-scrub/blag/images/IMG_20140521_090618.jpg"></p>
+<p>But that&rsquo;s ALL besides the point. Today I set up a cool thing which I shall now share with you now.
+```</p>
 
-<p>They gave us these stickers, and this one left me confused. But don&rsquo;t worry, I texted it to my mom, and she was confused as well. I guess it&rsquo;s part of their &ldquo;It&rsquo;s better to share &ndash; your mother was right&rdquo; campaign. Also, this photo came out pretty nice so that is why you are currently looking at it. I can&rsquo;t say the same about the next one cause it&rsquo;s a little blurry.</p>
+<h1>lvs</h1>
 
-<p><img class="center" src="/deku-scrub/blag/images/IMG_20140522_120209.jpg"></p>
+<p>  LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
+  homey         purin Vwi-aotz&mdash;  1.00t thinset          2.24     <br/>
+  &hellip;
+  snap05.30.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  snap05.30.14m purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  snap06.01.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  thinset       purin twi-a-tz&mdash; 50.00g                 47.15  25.06
+```</p>
 
-<p>Thar she blows in all her beauty. The specs are below in a neat little table that hopefully will come out and not look awful:</p>
+<p>Here you can see that I have a 50G lvm thin pool called &ldquo;thinset&rdquo; (at the bottom), and within this pool is a logical thin volume called &ldquo;homey&rdquo;. Then there are three snapshots that use &ldquo;homey&rdquo; as their origin, meaning they are a snapshot of &ldquo;homey,&rdquo; and will copy the required bytes on write to maintain their snapshot state.</p>
 
-<table>
-<thead>
-<tr>
-<th></th>
-<th> Spec        </th>
-<th> Value    </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td> Processor   </td>
-<td> i7-4600U </td>
-</tr>
-<tr>
-<td></td>
-<td> Memory      </td>
-<td> 12GB     </td>
-</tr>
-<tr>
-<td></td>
-<td> Storage     </td>
-<td> 256GB    </td>
-</tr>
-<tr>
-<td></td>
-<td> Resolution  </td>
-<td> 1080p</td>
-</tr>
-<tr>
-<td></td>
-<td> Battery     </td>
-<td> two???</td>
-</tr>
-</tbody>
-</table>
+<p>What ISN&rsquo;T shown here is that I currently have the &ldquo;homey&rdquo; LV mounted at <code>/home</code></p>
 
+<p>```</p>
 
-<p>Yeah, it has two batteries for some reason which was very confusing at first. Well, that&rsquo;s all the good news, but the bad news is that I will have to return it at the end of the internship :(. My poor baby.</p>
+<h1>df -h</h1>
 
-<p>Here&rsquo;s where things get a little weird/interesting though: It turns out that, when they gave us the laptops, that they came installed with something called a &ldquo;RHEL6 CSB&rdquo;, which is the &ldquo;Red Hat Enterprise Linux Corporate Standard Build.&rdquo; Which actually, out of the box, does NOT have root or sudo access. Which, of course, means that you can&rsquo;t actually <em>install</em> anything. The person who gave us the laptops was very nice and expicilit in saying that we <em>could</em> in fact root them and install our own software on them, but I guess I was just taken aback.</p>
+<p>..
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
+```</p>
 
-<p><img class="center" src="/deku-scrub/blag/images/sandies.jpg"></p>
+<p>There are the usual interesting things about lvmthin volumes that you can note here, such as <code>df</code> believing the filesystem only has 1% of its &ldquo;1008G&rdquo; used, when in reality the thin pool only has 50G that it is able to allocated. But you can also see that I have snapshots of the form <code>snapMM.DD.YY(e/m)</code>, which are taken daily on that date (with e for evening and m for morning). This was configured via <code>cron</code> by editing <code>/etc/crontab</code> to have the following new lines appended:</p>
 
-<p>After receiving the laptops and being taught how to log into our @redhat.com accounts (we have to use an authenticator to do so, which is kind of annoying), we proceeded to the manager lunch. This consisted primarily of triangular sandwiches. During the lunch, my manager told me that I should probably just wipe whatever&rsquo;s on the machines and load up either a non-CSB of RHEL or Fedora. After lunch, I was escorted to my cubicle by my manager and then, surprisingly, left to myself.</p>
+<p><code>
+  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
+  0  17 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)e
+</code></p>
 
-<p>I signed onto IRC and joined all the channels that my manager advised I hang out in, and then got to work on the laptop. My official instructions were to read up about lvm (logical volume management) partitions. In particular, I was to read the RHEL7 instructions that were in development and ensure that they were accurate to what actually happened. In this pursuit though, I began to notice something. I was unable to install any packages still, even despite having given myself root through recovery mode. Apparently Fedora and Red Hat binaries aren&rsquo;t actually compatible? And of course, to install anything that wasn&rsquo;t a binary I&rsquo;d need a compiler but I couldn&rsquo;t fetch one of those either. Being a scrub, maybe one day I will figure out just what the problem was, but at the time I could not.</p>
+<p>Making my snapshot commands being run on the 10th (10AM) and 17th (5PM) hours of each day. It&rsquo;s also worth noting that <code>anacron</code> could be used if I wanted to queue up the snapshots for when the computer was powered down, but that isn&rsquo;t desired behavior, at least not for me.</p>
 
-<p>I wasn&rsquo;t entirely comfortable with the idea of completely wiping the CSB they had just provided me with. It was custom configured to connect to the Red Hat VPN in Raleigh, among other things. To combat this, I opened up the disk utility to check out the feasability of a dual boot. Much to my surprise, the disk was split up like this: 3GB for /dev/sda1 (this was mounted as /boot, which AFAIK is about 2.8GB more than it needs to be?), 253GB for /dev/sda2. Okay, that&rsquo;s not the surprising part. The 253GB partition was a logical volume group encrypted with LUKS. Inside of this, however, was a rather odd setup: 8GB for /home, 30GB for a blank directory mounted as /VirtualMachines, 8GB for /, 4GB for swap. And that&rsquo;s it.</p>
+<p>You might be thinking to yourself &ldquo;Okay who cares about cron what does that really have to do with your internship?&rdquo; To which I respond it&rsquo;s just cool, okay?! SHARING IS CARING.</p>
 
-<p>Now, you may notice here, that 8+30+8+4 = 50GB / the 253GB partition. Where are the other 203GB? Unfortunately, the Disks utility wasn&rsquo;t telling me much, and gparted was telling me even less (no support for LUKS volumes).</p>
+<p>Some more things to note here is that I did have to create the &ldquo;homey&rdquo; LV from nothing and manually copy over my files from my old <code>/home</code>. This is due to the fact that I needed it to be within a thin pool, and you can only take thin snapshots of an external origin (LV that isn&rsquo;t within a thin pool) when that source is read-only. I thought I&rsquo;d just start it all over.</p>
 
-<p><img class="center" src="/deku-scrub/blag/images/Sad-pug.jpg"></p>
+<p><code>
+lvconvert --merge purin/snapMM.DD.YYz
+</code></p>
 
-<p>I was confused, but also conveniently had a list right next to me from my manager of lvm commands I could use to try to get to the bottom of the situation.</p>
+<p>The above command can be run (when <code>/home</code> isn&rsquo;t mounted) to rollback to the given snapshot day. I&rsquo;ve tested it a little bit so far and it has been successful, but it should get a lot more interesting once I have a bunch of snapshots to go off. If one tries to <code>lvconvert</code> while the origin is mounted, the merge will be queued until the next mount of the <strong>snapshot</strong>. This actually took me a while to learn. And don&rsquo;t forget, to activate a thin snapshot one needs to pass the <code>-K</code> flag as mentioned in an earlier blog post.</p>
 
-<p>To list all the logical volumes (these are the things that are within the encrypted partition)
+<p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, sa seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
+
+<p>I have a feeling Monday&rsquo;s post is going to involve ram disks and dm-cache, so stay tuned and try not to fall off the edge of your seat.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 06: Life at Red Hat]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/29/day-06-of-bugzilla-and-bagels/"/>
+    <updated>2014-05-29T23:42:49-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/29/day-06-of-bugzilla-and-bagels</id>
+    <content type="html"><![CDATA[<p>This post is focused primarily on what it&rsquo;s like to work at Red Hat. My past few posts have been more on the technical side, as much of what I do consists of that. The other interns have more frequent meetings with their managers, but I appear to be on a much smaller team. As a result of this, much of my day is the same with the <em>exception</em> of the technical stuff that I&rsquo;m playing around with that day.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/redhat-ovs-sdn.jpg"></p>
+
+<p>Before I get into the actual workflow, HERE&rsquo;S WHAT YOU NEED TO KNOW. I hadn&rsquo;t realized how much I agreed with the &ldquo;ideals&rdquo; of the company until I actually started working there. A couple of years ago if someone said &ldquo;Red Hat&rdquo; I might have responded with &ldquo;oh, those dudes that are trying to commercialize Linux?&rdquo; AND OH HOW WRONG I WOULD HAVE BEEN. I guess the biggest and most important thing that I hadn&rsquo;t realized about the company was that Fedora pretty much IS RHEL (Red Hat Enterprise Linux), or at least acts as its upstream. Fedora is on a 6 month release cycle, while RHEL is on a 2 year release cycle. I had originally thought Red Hat &ldquo;claimed&rdquo; to give back to to the community through Fedora, but put all their good stuff in RHEL. In reality, they actually work <a href="https://git.fedorahosted.org/git/lvm2.git">totally in the open</a>, and then add the finished product to the next RHEL release if it goes over well in Fedora.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/Justice_League_break_room.jpg"></p>
+
+<p>Now onto the good stuff though. I don&rsquo;t know if it&rsquo;s the aforementioned culture or what but everyone here is just VERY laid back. Everybody&rsquo;s smiling at you, and nobody seems to throw you a look that says &ldquo;shouldn&rsquo;t you be doing something important instead of playing around on a computer all day?&rdquo; What&rsquo;s more, everyone in the company also unanimously seems to agree that they love it. I never see managers asking people to see their work, and I even overheard a story about a guy who they noticed never came in (always worked from home) so they just gave his cubicle to someone else. It&rsquo;s VERY relaxed. I bought a bunch of semi-fancy shirts only to find that everyone just wears jeans.</p>
+
+<p>There is a break room on every floor which contains snacks, fruit, coffee, and (most importantly) water. In addition to that, every single morning there are bagels just straight up available with cream cheese. Other than that, though, my daily routine consists of mostly bouncing back and forth between the break room and my cubicle to (fill up on water) and (read documentation || pound my head against some linux thing) respectively.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/Redhat_NB5.jpg"></p>
+
+<p>When lunch time rolls around, so far I&rsquo;ve only ever eaten at the cafeteria on the first floor (which is pictured above&mdash; it looks really nice because they just redid it). Usually, as mentioned before, I get the grilled chicken sandwich, although today I opted for a turkey wrap. The selection isn&rsquo;t too great, but fortunately what they do have are foods that I eat. There are two main issues that I currently have with lunch: 1. I don&rsquo;t get paid to do it and 2. I have to pay to do it. Even though each meal runs me about $5, it still doesn&rsquo;t feel great to see the money leaving my card balance. What especially doesn&rsquo;t feel great is the fact that if I had greater self control I could probably just tuck away a morning bagel and have that for free.</p>
+
+<p>Sometimes at the end of the day one of the two people on my team (my manager and pseudo-manager) will come up to me and meet with me for a bit and discuss my progress and what I should be looking at and focusing on. Thus far, I&rsquo;ve still just been focusing on the lvm stuff and primarily the lvmthin stuff. There is talk about having me take a look at dm-cache though. With any luck, I should be contributing semi-meaningful <a href="https://bugzilla.redhat.com/buglist.cgi?component=lvm2&amp;product=Red%20Hat%20Enterprise%20Linux%205">bug reports</a> soon.</p>
+
+<p>Other than that, there isn&rsquo;t much going on outside of the technical things discussed here. Once a week all the interns get together and have a group lunch (which we get paid for) and there is talk about a final intern group presentation that we would have to coordinate. Additionally, while I&rsquo;m at work and connected to the intranet, I hang out (but currently do not talk in) IRC channels for lvm and the interns.</p>
+
+<p>Drive there, park, scan inside, eat, cube, drink, cube, drink, cube, eat, drink, cube, drink, cube, talk to manager (sometimes), leave, drive home. And it&rsquo;s awesome.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 05: Thinly Provisioned Snapshots]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/28/day-05-thinly-provisioned-snapshots/"/>
+    <updated>2014-05-28T22:54:34-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/28/day-05-thinly-provisioned-snapshots</id>
+    <content type="html"><![CDATA[<p>In yesterday&rsquo;s post I introduced LVM snapshots and why they are useful. It may have gotten lost a bit in the jumble of comamnds. To recap, snapshots <em>physically</em> store only the differences between a filesystem at a given time and the present. Using the differences (which of course are much smaller than the entire filesystem) one can mount and reconstruct the filesystem from the point when the snapshot was created.</p>
+
+<p>That, of course, is really cool, but let&rsquo;s say you want to take a TON of snapshots (like we&rsquo;re talking daily ones). The daily snaps would allow you to easily revert to what the filesystem looked like on a given day without using much more space. Of course, if they were just regular LVM snapshots, you&rsquo;d need to decide on a size to give them. Taking daily snapshots in this manner would fill up in no time.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/uglydiagram.png"></p>
+
+<p>A thin pool is a logical volume. You give it a set size, and it is that size, much like a logical volume. The total amount of bytes cannot exceed that size ever, and if it does you&rsquo;ll have to resize it. Making one is as follows:</p>
+
+<p><code>
+lvcreate --thinpool vg/thin_pool --size 30G
+</code></p>
+
+<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 500TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 500TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
+
+<p><code>
+lvcreate -T vg/thin_pool -V 500T -n big_filesystem
+</code></p>
+
+<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;500TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
+
+<p><code>
+lvcreate -s vg/big_filesystem -n snappy
+</code></p>
+
+<p>Another added bonus of being within the pool is that the thin snapshots will share common data with <em>each other</em> too. This would have also been wasted duplicated space. These enhancements change the game of snapshots from a useful way to get a O(1) image of the filesystem to a meaningful way of storing the filesystem at any point and time.</p>
+
+<p>QUICK CAVEAT. I got hung up on this for a long time. Thin snapshots have a special case when they are generated and are <strong>not</strong> automatically marked active to be mountable in <code>/dev</code>. You can view this information using <code>lvscan</code>. You will see any thin snapshots are marked inactive. Normally to mark a volume active, you&rsquo;d simply perform:</p>
+
+<p><code>
+lvconvert -ay vg/lv
+</code></p>
+
+<p>However, as thin snapshots have the special flag set to not be marked active, you need to modify this to look like:</p>
+
+<p><code>
+lvconvert -ay -K vg/lv
+</code></p>
+
+<p>That simple <code>-K</code> argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving <code>-K</code> out silently fails, I wasn&rsquo;t sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).</p>
+
+<p>With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynammically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren&rsquo;t allowed to set it for a thin snapshot). The <a href="http://wiki.gentoo.org/wiki/LVM">Gentoo Wiki</a> actually has really good instructions and easy to follow commands on all of this if you don&rsquo;t want to take my word for them (or in the more likely case, if i&rsquo;ve left something out).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 04: LVM and LVM Snapshots]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning/"/>
+    <updated>2014-05-27T18:32:05-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning</id>
+    <content type="html"><![CDATA[<p>We&rsquo;re jumping right into this, because it&rsquo;s pretty crazy. Like, mad crazy son. I haven&rsquo;t talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a> actually is. So I&rsquo;m gonna attempt to do an introduction to it right now. Right here. Literally next.</p>
+
+<p>An entire drive can be split into partitions. This is old news. What&rsquo;s also old news is that you can only have a maximum of four primary partitions on an MBR drive. While this is <a href="http://en.wikipedia.org/wiki/GUID_Partition_Table">being phased out</a>, it is still very popular. Additionally, what if you want to have a partition that&rsquo;s <strong>bigger</strong> than your entire physical drive? That sounds a little silly&mdash; when exactly would you WANT to have more data than can fit on one drive? Just buy another drive and make a new filesystem and manage &lsquo;em no? Well that&rsquo;s annoying and not as cool as LOGICAL VOLUME MANAGEMENT. I hope I&rsquo;m asking the right rhetorical questions here.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/lvm.png"></p>
+
+<p>Okay, I&rsquo;ve pretty much ALREADY butchered this explanation, so let&rsquo;s try to salvage what I&rsquo;ve said so far with this diagram. At the bottom layer are the physical volumes. In this case, there are two SEPARATE devices (<code>/dev/sda</code> and <code>/dev/sdb</code>). They don&rsquo;t actually have to be the same size but in this case they are. Now, these could be like, a spinning hard disk and a flash drive, for example. Then on top of this you create something called a volume group (VG). On top of that are the actual logical volumes which can be split up however you want, and then finally those volumes can be formatted as filesystems.</p>
+
+<p>For simplicity&rsquo;s sake, these instructions are going to refer to a single 32GB device, <code>/dev/sdc</code> that is assumed to be totally unallocated (no filesystems). While you span multiple different types of device media, lvm still has benefits to offer on a single physical device. You can play along at home if you&rsquo;d like by destroying all the filesystems on it through a tool like parted or gparted.</p>
+
+<p><code>
+pvcreate /dev/sdc1
+vgcreate dat_group_name_tho /dev/sdc1
+</code></p>
+
+<p>So now we&rsquo;ve got ourselves a volume group spanning the entire USB stick. If you had an existing filesystem on <code>/dev/sdc1</code>, but some unallocated space after, you could also have created the physical volume (with <code>pvcreate</code>) on /dev/sdc2.</p>
+
+<p>So now check this out:
 <code>
-lvdisplay
+lvcreate --size 10G --name first_lv dat_group_name_tho
 </code></p>
 
-<p>And information regarding the aforementioned volumes appeared, including their volume group name. In this case, the volume group name was RHELCSB6, (configured by the CSB).</p>
+<p>This creates a single 10GB logical volume across the device. Keep in mind this now leaves us with 22GB left free to create more logical volumes within this volume group. This of course can be formatted an mounted just like any real disk.
+<code>
+mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
+mkdir /mnt/my_lvm
+mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm
+</code></p>
+
+<p>Nothing special so far though, ya? WRONG. So in between the LV and the PV exists something called the device mapper, of which I know nothing about. Hopefully I will learn about it in the future, though. But thanks to this, it&rsquo;s possible to play with the data in some interesting ways, including making <a href="http://en.wikipedia.org/wiki/Snapshot_(computer_storage">snapshots</a>) of the filesystem.</p>
+
+<p>So here&rsquo;s how this diddy breaks down: a snapshot, from the moment it is created on a target filesystem, is a logical volume itself that will store the <strong>differences</strong> between it and the target volume. That is, physically the snapshot logical volume will ONLY contain the old bytes that have since been overwritten on the original device since it was taken. This means that the snapshot will be empty until a write is made on its target. Then the old data, before being overwritten will be written to the snapshot volume. Using this small set of differences, given a snapshot and its target, one can recreate the entire filesystem from the point it was taken.</p>
 
 <p><code>
-lvcreate --size 30GB RHELCSB6
+lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho
 </code></p>
 
-<p>That&rsquo;s <strong>it</strong>. It was really confusing to see how simple this was via CLI, but how compicated and unrepresentable it was in the included GUI tools.</p>
+<p>Above I&rsquo;ve created a snapshot of our <code>first_lv</code> using <code>lvcreate</code>, just like other logical volumes, but using the <code>--snapshot [target]</code> argument. Now here&rsquo;s the fun part: MOUNTING that snapshot.</p>
 
 <p><code>
-wget http://download.fedoraproject.org/pub/fedora/linux/releases/20/Live/x86_64/Fedora-Live-Desktop-x86_64-20-1.iso
-dd if=Fedora-Live-Desktop-x86_64-20-1.iso of=/dev/sdc bs=500M
-</code></p>
+mkdir /mnt/snap
+mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
+</code>
+When you mount it, you&rsquo;ll notice it mounts as a 10GB volume! Not the 200MB volume that we allotted it. You can now open both <code>/mnt/snap</code> and <code>/mnt/my_lvm</code> side by side. (Also, I should have noted that we should have created some files on <code>/mnt/my_lvm</code> prior to taking a snapshot of it&hellip;). The snapshot volume will contain the exact data that our lvm volume had when we took the snapshot, without taking up the same amount of space.</p>
 
-<p>Where /dev/sdc is the usb device. The rest of the fedora process was straightforward, and the install also picked up the RHEL6 CSB install as long as it was mounted during the installation.</p>
+<p>There&rsquo;s a caveat here though that I have not discussed: What happens when differences between the original and the target volume <strong>exceed</strong> 200MB? Well, the snapshot will then become invalidated. To ensure that the snapshot won&rsquo;t fill, you can make it the same size as the target volume (10GB), but then we lose the previous advantage of not requiring to be the same size as the target volume. It SEEMS kinda chicken and eggy, and oh whatever shall we do about it? WELL FRET NOT.</p>
 
-<p>There&rsquo;s a lot that I haven&rsquo;t mentioned here, including fiddling around with <code>lvremove</code>, <code>vgdisplay</code>, <code>lvrename</code>, and many more lv-, vg-, and pv tools. The way a lv (logical volume) builds on a vg (volume group) which builds on a pv (physical volume) seemed to, at least how I feel now, echo the networking stack, which is pretty interesting.</p>
+<p>Tomorrow I will discuss what I know so far about lvm thin provisioning (which is what my actual internship is around&mdash; reviewing that the lvmthin documentation is up to date.), and in particular how it addresses this little snapshot dilemna.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140527_172623.jpg"></p>
+
+<p>Before I go, I found this special mirror-outlet today on a mirror in the building. WHAT. That&rsquo;s amazing.</p>
+
+<p>Oh also, I forgot to mention, a snapshot is 100% read and writable, just as if it were the original filesystem, without taking up the same amount of space (as it shares the common bytes). AWESOME.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 03: Cubicle Sweet Cubicle]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle/"/>
+    <updated>2014-05-23T04:06:11-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle</id>
+    <content type="html"><![CDATA[<p>This was the first &ldquo;real&rdquo; work day here, without any intern specific activities, and also a Friday. When I arrived and parked in a spot in the back of the building, with my new babby laptop in tow, I really, for a brief moment, felt like a functioning member of society. I heroically scanned into the building using my incredibly and extremely fancy spider-man web-launcher style security card, only to become INSTANTLY lost in the maze that was the building. After eventually making my way to the Cube (and making a stop for a bagel in the break room)</p>
+
+<p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140523_112111.jpg"></p>
+
+<p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/500004774-03-01.jpeg"></p>
+
+<p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
+
+<p>Okay, but those computers were nothing in comparison to my dinosaurs. Here are the specs, again in convenient table format.</p>
+
+<p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/IMG_20140523_112117.jpg"></p>
+
+<p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
+
+<p>Drive 1: 200mb /boot, remaining space RAID member 2
+Drive 2: full RAID member 2</p>
+
+<p>RAID: one logical volume group</p>
+
+<p>volume group: 10GB logical volume for /, 4GB swap, 50GB logical volume for /home</p>
+
+<p>You might think that&rsquo;s all boring, but it (should mean) that anything at all that happens to any of the volumes within the volume group would be completely synced across drives. That is, if one drive were to fail completely, all of the data would remain intact.</p>
+
+<p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/chickensandwich.jpg"></p>
+
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="http://rhsummit.files.wordpress.com/2013/07/doerbeck_w_1320_lvm_fundamentals_lab.pdf">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="http://ftp.redhat.com//redhat/rhel/rc/7/Workstation/x86_64/iso/">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+
+<p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
+
+<p>Yes, that is what I leave you with.</p>
 ]]></content>
   </entry>
   

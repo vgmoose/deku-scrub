@@ -1040,6 +1040,11 @@ function decrypt()
     $('.title').each(function() {
                      $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
                      });
+
+	// third hack is the charm
+$('.category').each(function() {
+                     $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
+                     });
     
     // also a hack
     $('h1 a').html("Red Hat Scrub");
