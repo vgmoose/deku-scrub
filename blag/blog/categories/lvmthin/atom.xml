@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmthin | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmthin/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T17:48:13-04:00</updated>
+  <updated>2014-06-01T17:51:25-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -69,6 +69,8 @@ lvconvert --merge purin/snapMM.DD.YYz
 <p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, sa seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
 
 <p>I have a feeling Monday&rsquo;s post is going to involve ram disks and dm-cachce, so stay tuned and try not to fall off the edge of your seat.</p>
+
+<p><img class="center" src="/deku-scrub/blag/images/the-more-you-know-1.png"></p>
 ]]></content>
   </entry>
   
