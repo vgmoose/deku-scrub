@@ -139,6 +139,8 @@ function logEmIn()
            success: function(data){
            var date = new Date();
            $.cookie("key", pass, {expires: date.getTime() + 30000000000});
+           if (document.referrer.indexOf("/deku-scrub/blag/blog/") > 0)
+                location.href = document.referrer;
            location.href = '/deku-scrub/blag/';
            bool = false;
            }
