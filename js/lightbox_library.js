@@ -130,6 +130,8 @@ function logEmIn()
     
     var destination = passhash + "/index.html";
     
+    var ref = document.referrer;
+    
     var bool = true;
     
     $.ajax({
@@ -139,8 +141,8 @@ function logEmIn()
            success: function(data){
            var date = new Date();
            $.cookie("key", pass, {expires: date.getTime() + 30000000000});
-           if (document.referrer.indexOf("/deku-scrub/blag/blog/") > 0)
-                location.href = document.referrer;
+           if (ref.indexOf("/deku-scrub/blag/blog/") > 0)
+                location.href = ref;
            else
                 location.href = '/deku-scrub/blag/';
            bool = false;
