@@ -2,56 +2,56 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/19/first-post/</loc>
-        <lastmod>2014-06-01T15:26:53-04:00</lastmod>
+        <lastmod>2014-05-27T00:08:19-04:00</lastmod>
     </url>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/20/orientation-thoughts/</loc>
-        <lastmod>2014-06-01T15:26:53-04:00</lastmod>
+        <lastmod>2014-05-27T00:07:53-04:00</lastmod>
     </url>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/21/day-01-orientation/</loc>
-        <lastmod>2014-06-01T15:26:53-04:00</lastmod>
+        <lastmod>2014-05-27T00:08:03-04:00</lastmod>
     </url>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/22/day-02-orientation-part-2/</loc>
-        <lastmod>2014-06-01T17:53:38-04:00</lastmod>
+        <lastmod>2014-05-27T00:08:13-04:00</lastmod>
     </url>
     <url>
         <loc>
             //vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle/
         </loc>
-        <lastmod>2014-06-01T17:48:03-04:00</lastmod>
+        <lastmod>2014-05-27T00:08:24-04:00</lastmod>
     </url>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning/</loc>
-        <lastmod>2014-06-01T15:26:53-04:00</lastmod>
+        <lastmod>2014-05-28T02:11:26-04:00</lastmod>
     </url>
     <url>
         <loc>
             //vgmoose.github.io/deku-scrub/blag//blog/2014/05/28/day-05-thinly-provisioned-snapshots/
         </loc>
-        <lastmod>2014-06-01T17:46:45-04:00</lastmod>
+        <lastmod>2014-05-29T23:38:52-04:00</lastmod>
     </url>
     <url>
         <loc>
             //vgmoose.github.io/deku-scrub/blag//blog/2014/05/29/day-06-of-bugzilla-and-bagels/
         </loc>
-        <lastmod>2014-06-01T17:51:10-04:00</lastmod>
+        <lastmod>2014-05-31T02:58:29-04:00</lastmod>
     </url>
     <url>
-        <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine/</loc>
-        <lastmod>2014-06-01T17:54:22-04:00</lastmod>
-    </url>
-    <url>
-        <loc>//vgmoose.github.io/deku-scrub/blag//robots.txt</loc>
-        <lastmod>2014-06-01T15:26:53-04:00</lastmod>
+        <loc>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/02/day-08-enter-the-cache/</loc>
+        <lastmod>2014-06-12T21:55:03-04:00</lastmod>
     </url>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//blog/archives/</loc>
-        <lastmod>2014-06-01T17:54:22-04:00</lastmod>
+        <lastmod>2014-06-12T21:55:03-04:00</lastmod>
     </url>
     <url>
         <loc>//vgmoose.github.io/deku-scrub/blag//</loc>
-        <lastmod>2014-06-01T17:54:22-04:00</lastmod>
+        <lastmod>2014-06-12T21:55:03-04:00</lastmod>
+    </url>
+    <url>
+        <loc>//vgmoose.github.io/deku-scrub/blag//robots.txt</loc>
+        <lastmod>2014-05-19T20:32:05-04:00</lastmod>
     </url>
 </urlset>

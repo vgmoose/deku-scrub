@@ -4,7 +4,7 @@
   <title><![CDATA[Category: raid | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/raid/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T18:21:10-04:00</updated>
+  <updated>2014-06-12T21:55:12-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -51,7 +51,7 @@ Drive 2: full RAID member 2</p>
 
 <p><img class="center" src="/deku-scrub/blag/images/chickensandwich.jpg"></p>
 
-<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="http://rhsummit.files.wordpress.com/2013/07/doerbeck_w_1320_lvm_fundamentals_lab.pdf">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="http://ftp.redhat.com//redhat/rhel/rc/7/Workstation/x86_64/iso/">OH ALSO JUST KIDDING. AGAIN</a>.</p>
+<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="/deku-scrub/blag/images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="/deku-scrub/blag/images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
 
 <p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
 

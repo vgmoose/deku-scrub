@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmthin | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmthin/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T18:21:10-04:00</updated>
+  <updated>2014-06-12T21:55:12-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,65 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Day 07: Daily Time Machine]]></title>
-    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine/"/>
-    <updated>2014-05-30T15:51:59-04:00</updated>
-    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine</id>
-    <content type="html"><![CDATA[<p>Happy Friday! I finally feel like I&rsquo;m becoming well-versed with these LVM commands. I&rsquo;m also starting to feel a lot more comfortable in general. It might just be because we&rsquo;re using Thinkpads, but this laptop has byfar been the most comfortable linux experience I&rsquo;ve had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I&rsquo;m being brainwashed by Red Hat, but I&rsquo;m also probably gonna swap out my home server with Fedora instead of Debian.</p>
-
-<p>But that&rsquo;s ALL besides the point. Today I set up a cool thing which I shall now share with you now.
-```</p>
-
-<h1>lvs</h1>
-
-<p>  LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
-  homey         purin Vwi-aotz&mdash;  1.00t thinset          2.24     <br/>
-  &hellip;
-  snap05.30.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
-  snap05.30.14m purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
-  snap06.01.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
-  thinset       purin twi-a-tz&mdash; 50.00g                 47.15  25.06
-```</p>
-
-<p>Here you can see that I have a 50G lvm thin pool called &ldquo;thinset&rdquo; (at the bottom), and within this pool is a logical thin volume called &ldquo;homey&rdquo;. Then there are three snapshots that use &ldquo;homey&rdquo; as their origin, meaning they are a snapshot of &ldquo;homey,&rdquo; and will copy the required bytes on write to maintain their snapshot state.</p>
-
-<p>What ISN&rsquo;T shown here is that I currently have the &ldquo;homey&rdquo; LV mounted at <code>/home</code></p>
-
-<p>```</p>
-
-<h1>df -h</h1>
-
-<p>..
-Filesystem               Size  Used Avail Use% Mounted on
-/dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
-```</p>
-
-<p>There are the usual interesting things about lvmthin volumes that you can note here, such as <code>df</code> believing the filesystem only has 1% of its &ldquo;1008G&rdquo; used, when in reality the thin pool only has 50G that it is able to allocated. But you can also see that I have snapshots of the form <code>snapMM.DD.YY(e/m)</code>, which are taken daily on that date (with e for evening and m for morning). This was configured via <code>cron</code> by editing <code>/etc/crontab</code> to have the following new lines appended:</p>
-
-<p><code>
-  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
-  0  17 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)e
-</code></p>
-
-<p>Making my snapshot commands being run on the 10th (10AM) and 17th (5PM) hours of each day. It&rsquo;s also worth noting that <code>anacron</code> could be used if I wanted to queue up the snapshots for when the computer was powered down, but that isn&rsquo;t desired behavior, at least not for me.</p>
-
-<p>You might be thinking to yourself &ldquo;Okay who cares about cron what does that really have to do with your internship?&rdquo; To which I respond it&rsquo;s just cool, okay?! SHARING IS CARING.</p>
-
-<p>Some more things to note here is that I did have to create the &ldquo;homey&rdquo; LV from nothing and manually copy over my files from my old <code>/home</code>. This is due to the fact that I needed it to be within a thin pool, and you can only take thin snapshots of an external origin (LV that isn&rsquo;t within a thin pool) when that source is read-only. I thought I&rsquo;d just start it all over.</p>
-
-<p><code>
-lvconvert --merge purin/snapMM.DD.YYz
-</code></p>
-
-<p>The above command can be run (when <code>/home</code> isn&rsquo;t mounted) to rollback to the given snapshot day. I&rsquo;ve tested it a little bit so far and it has been successful, but it should get a lot more interesting once I have a bunch of snapshots to go off. If one tries to <code>lvconvert</code> while the origin is mounted, the merge will be queued until the next mount of the <strong>snapshot</strong>. This actually took me a while to learn. And don&rsquo;t forget, to activate a thin snapshot one needs to pass the <code>-K</code> flag as mentioned in an earlier blog post.</p>
-
-<p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, sa seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
-
-<p>I have a feeling Monday&rsquo;s post is going to involve ram disks and dm-cache, so stay tuned and try not to fall off the edge of your seat.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 05: Thinly Provisioned Snapshots]]></title>
@@ -89,13 +30,13 @@ lvconvert --merge purin/snapMM.DD.YYz
 lvcreate --thinpool vg/thin_pool --size 30G
 </code></p>
 
-<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 500TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 500TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
+<p>Where vg is the volume group. Nothing special <em>so far</em>. What&rsquo;s amazing though, is within this pool can exist filesystems that just <strong>straight up lie</strong> about how much space they have left. See the 100TB volume within the pool in the diagram above. You can mount that logical volume and it will appear to the computer as a 100TB volume. To create it within <code>thin_pool</code>, issue the following commands:</p>
 
 <p><code>
-lvcreate -T vg/thin_pool -V 500T -n big_filesystem
+lvcreate -T vg/thin_pool -V 100T -n big_filesystem
 </code></p>
 
-<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;500TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
+<p>Note the use of the <code>-V</code>  argument for virtual size. Why is this useful? It allows for the volume to dynamically take up space as it needs. Let&rsquo;s say you put 2GB worth of files on this &ldquo;100TB filesystem.&rdquo; Physically, only 2GB worth of data will be <strong>allocated</strong>. Meaning, you can continue to create logical volumes within the pool that will expand up to their maximum virtual size. So this time, when we create our snapshots, their space doesn&rsquo;t matter! They will dynamically expand within the pool to the necessary size (which will be the size of the differences between them in the original). Obviously the <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/thinly-provisioned_snapshot_volumes.html">official documentation</a> does a better job of explaining this, but I thought I&rsquo;d give it a try.</p>
 
 <p><code>
 lvcreate -s vg/big_filesystem -n snappy

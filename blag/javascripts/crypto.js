@@ -1038,21 +1038,8 @@ function decrypt()
     
     //hack
     $('.title').each(function() {
-    		if ($(this).html().indexOf("deku") > 0)
-		return true;
                      $(this).html($(this).html().replace("/blog/", "/deku-scrub/blag/blog/"));
                      });
-
-	// third hack is the charm
-$('.category').each(function() {
-	if ($(this).attr("href").indexOf("deku") > 0)
-		return true;
-                     $(this).attr("href", $(this
-                     ).attr("href").replace("/blog/", "/deku-scrub/blag/blog/"));
-                     });
-
-	// last hack
-	$('.rss').attr("href", $('.rss').attr("href").replace("/atom","/deku-scrub/blag/atom"))
     
     // also a hack
     $('h1 a').html("Red Hat Scrub");
