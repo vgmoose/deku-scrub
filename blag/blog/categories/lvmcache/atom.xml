@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: cache | Deku Scrub]]></title>
-  <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/cache/atom.xml" rel="self"/>
+  <title><![CDATA[Category: lvmcache | Deku Scrub]]></title>
+  <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmcache/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
   <updated>2014-06-13T00:33:37-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>

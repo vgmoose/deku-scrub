@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cron | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/cron/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-01T18:21:10-04:00</updated>
+  <updated>2014-06-13T00:33:37-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -16,21 +16,22 @@
   <entry>
     <title type="html"><![CDATA[Day 07: Daily Time Machine]]></title>
     <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine/"/>
-    <updated>2014-05-30T15:51:59-04:00</updated>
+    <updated>2014-05-30T22:17:38-04:00</updated>
     <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine</id>
     <content type="html"><![CDATA[<p>Happy Friday! I finally feel like I&rsquo;m becoming well-versed with these LVM commands. I&rsquo;m also starting to feel a lot more comfortable in general. It might just be because we&rsquo;re using Thinkpads, but this laptop has byfar been the most comfortable linux experience I&rsquo;ve had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I&rsquo;m being brainwashed by Red Hat, but I&rsquo;m also probably gonna swap out my home server with Fedora instead of Debian.</p>
 
-<p>But that&rsquo;s ALL besides the point. Today I set up a cool thing which I shall now share with you now.
-```</p>
+<p>But that&rsquo;s ALL besides the point. Today I set up a cool thing which I shall now share with you now.</p>
+
+<p>```</p>
 
 <h1>lvs</h1>
 
 <p>  LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
-  homey         purin Vwi-aotz&mdash;  1.00t thinset          2.24     <br/>
+  homey         purin Vwi-aotz&mdash;  1.00t thinset          2.24   <br/>
   &hellip;
-  snap05.30.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
-  snap05.30.14m purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
-  snap06.01.14e purin Vwi&mdash;-tz-k  1.00t thinset homey             <br/>
+  snap05.30.14e purin Vwi&mdash;-tz-k  1.00t thinset homey           <br/>
+  snap05.30.14m purin Vwi&mdash;-tz-k  1.00t thinset homey           <br/>
+  snap06.01.14e purin Vwi&mdash;-tz-k  1.00t thinset homey           <br/>
   thinset       purin twi-a-tz&mdash; 50.00g                 47.15  25.06
 ```</p>
 
@@ -42,8 +43,7 @@
 
 <h1>df -h</h1>
 
-<p>..
-Filesystem               Size  Used Avail Use% Mounted on
+<p>Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
 ```</p>
 
@@ -66,7 +66,7 @@ lvconvert --merge purin/snapMM.DD.YYz
 
 <p>The above command can be run (when <code>/home</code> isn&rsquo;t mounted) to rollback to the given snapshot day. I&rsquo;ve tested it a little bit so far and it has been successful, but it should get a lot more interesting once I have a bunch of snapshots to go off. If one tries to <code>lvconvert</code> while the origin is mounted, the merge will be queued until the next mount of the <strong>snapshot</strong>. This actually took me a while to learn. And don&rsquo;t forget, to activate a thin snapshot one needs to pass the <code>-K</code> flag as mentioned in an earlier blog post.</p>
 
-<p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, sa seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
+<p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, as seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
 
 <p>I have a feeling Monday&rsquo;s post is going to involve ram disks and dm-cache, so stay tuned and try not to fall off the edge of your seat.</p>
 ]]></content>

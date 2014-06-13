@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ramdisk | Deku Scrub]]></title>
+  <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/ramdisk/atom.xml" rel="self"/>
+  <link href="//vgmoose.github.io/deku-scrub/blag//"/>
+  <updated>2014-06-13T00:33:37-04:00</updated>
+  <id>//vgmoose.github.io/deku-scrub/blag//</id>
+  <author>
+    <name><![CDATA[Ricky Ayoub]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Day 09: RAM disks and Write Speeds]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/06/03/day-09-ram-disks-and-write-speeds/"/>
+    <updated>2014-06-03T19:31:20-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/03/day-09-ram-disks-and-write-speeds</id>
+    <content type="html"><![CDATA[<p>As discussed in yesterday&rsquo;s post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn&rsquo;t a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don&rsquo;t have flash storage. A <a href="http://en.wikipedia.org/wiki/RAM_drive">RAM disk</a>, (which, from this point on, I shall continue going back and forth between &ldquo;RAM disk&rdquo; and &ldquo;ramdisk&rdquo; spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it no longer performs it&rsquo;s RAM duties of storing memory, and the computer effectively treats your computer has having that much less RAM.</p>
+
+<p><code>
+mkdir /mnt/ramdisk
+mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk
+</code></p>
+
+<p>Those commands will create a ramdisk on a linux system. <a href="http://www.tekrevue.com/tip/how-to-create-a-4gbs-ram-disk-in-mac-os-x/">Mac instructions here</a>. You can then test the write speed, and note how much faster the RAM disk reacts than your disk originally had.</p>
+
+<p>```</p>
+
+<h1>dd if=/dev/zero of=/mnt/ramdisk/disk.img bs=1m count=4096</h1>
+
+<p>4194304000 GB transferred in 4.0 GB/s</p>
+
+<h1>dd if=/dev/zero of=~/disk.img bs=1m count=4000</h1>
+
+<p>4194304000 GB transferred in 300 MB/s
+```</p>
+
+<p>As seen there, the RAM is much faster. There are a couple of issues of course. The biggest one is when you reboot the ramdisk won&rsquo;t just be unmounted– it will be totally deleted. So you can&rsquo;t really rely on it for anything. In fact, the linux commands I listed above use <a href="http://en.wikipedia.org/wiki/Tmpfs">tmpfs</a>, which is designed to optimize things in such a situation.</p>
+
+<p>There&rsquo;s another problem, though. I wanted to use the RAM disks as physical volumes on which to extend a volume group over to use it with lvmcache. AFAIK, the only way to do this is via a loopback device, as &ldquo;mounting&rdquo; the ramdisk doesn&rsquo;t actually count as a device in <code>/dev</code>, which is required to create a physical volume.</p>
+
+<p><code>
+losetup /mnt/ramdisk/disk.img /dev/loop1
+</code></p>
+
+<p>And after this, it can be formatted as an LVM2 Physical Volume and added to the volume group.</p>
+
+<p><code>
+pvcreate /dev/loop1
+vgextend volume_group /dev/loop1
+</code></p>
+
+<p>There is a caveat to this though, which has hurt me on a couple of occasions&mdash; since the loopback device is temporary, once the computer reboots the physical device won&rsquo;t exist anymore. Normally that would mean the data on that device wouldn&rsquo;t be accessible, but as that device was part of a volume group, the volume group becomes inconsistent, and won&rsquo;t be able to be mounted until it is properly repaired.</p>
+
+<p>To prevent this, prior to rebooting the following command needs to be executed:</p>
+
+<p><code>
+vgreduce volume_group /dev/loop1
+</code></p>
+
+<p>And the following command will attempt to backtrack you out of the situation where one forgets to do that prior to it, and needs to recover the volume group to access the logical volumes on it. Not that anyone would <em>ever</em> do that.</p>
+
+<p><code>
+vgreduce volumegroup --removemissing
+</code></p>
+
+<p>(Yeah, I&rsquo;ve more recorded these for myself to reference at a later date, so what.)</p>
+]]></content>
+  </entry>
+  
+</feed>

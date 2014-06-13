@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvm | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvm/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-12T22:18:18-04:00</updated>
+  <updated>2014-06-13T00:33:37-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 09: RAM disks and Write Speeds]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/06/03/day-09-ram-disks-and-write-speeds/"/>
+    <updated>2014-06-03T19:31:20-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/03/day-09-ram-disks-and-write-speeds</id>
+    <content type="html"><![CDATA[<p>As discussed in yesterday&rsquo;s post, caching is beneficial when a large slow volume is assisted by a fast small one. While it isn&rsquo;t a practical use for production, my manager suggested I could emulate this faster behavior by using a ramdisk, as 2/3 of my machines don&rsquo;t have flash storage. A <a href="http://en.wikipedia.org/wiki/RAM_drive">RAM disk</a>, (which, from this point on, I shall continue going back and forth between &ldquo;RAM disk&rdquo; and &ldquo;ramdisk&rdquo; spellings) allows a piece of memory to be sectioned off and mounted like a disk would. This means it no longer performs it&rsquo;s RAM duties of storing memory, and the computer effectively treats your computer has having that much less RAM.</p>
+
+<p><code>
+mkdir /mnt/ramdisk
+mount -t tmpfs -o size=4096m tmpfs /mnt/ramdisk
+</code></p>
+
+<p>Those commands will create a ramdisk on a linux system. <a href="http://www.tekrevue.com/tip/how-to-create-a-4gbs-ram-disk-in-mac-os-x/">Mac instructions here</a>. You can then test the write speed, and note how much faster the RAM disk reacts than your disk originally had.</p>
+
+<p>```</p>
+
+<h1>dd if=/dev/zero of=/mnt/ramdisk/disk.img bs=1m count=4096</h1>
+
+<p>4194304000 GB transferred in 4.0 GB/s</p>
+
+<h1>dd if=/dev/zero of=~/disk.img bs=1m count=4000</h1>
+
+<p>4194304000 GB transferred in 300 MB/s
+```</p>
+
+<p>As seen there, the RAM is much faster. There are a couple of issues of course. The biggest one is when you reboot the ramdisk won&rsquo;t just be unmounted– it will be totally deleted. So you can&rsquo;t really rely on it for anything. In fact, the linux commands I listed above use <a href="http://en.wikipedia.org/wiki/Tmpfs">tmpfs</a>, which is designed to optimize things in such a situation.</p>
+
+<p>There&rsquo;s another problem, though. I wanted to use the RAM disks as physical volumes on which to extend a volume group over to use it with lvmcache. AFAIK, the only way to do this is via a loopback device, as &ldquo;mounting&rdquo; the ramdisk doesn&rsquo;t actually count as a device in <code>/dev</code>, which is required to create a physical volume.</p>
+
+<p><code>
+losetup /mnt/ramdisk/disk.img /dev/loop1
+</code></p>
+
+<p>And after this, it can be formatted as an LVM2 Physical Volume and added to the volume group.</p>
+
+<p><code>
+pvcreate /dev/loop1
+vgextend volume_group /dev/loop1
+</code></p>
+
+<p>There is a caveat to this though, which has hurt me on a couple of occasions&mdash; since the loopback device is temporary, once the computer reboots the physical device won&rsquo;t exist anymore. Normally that would mean the data on that device wouldn&rsquo;t be accessible, but as that device was part of a volume group, the volume group becomes inconsistent, and won&rsquo;t be able to be mounted until it is properly repaired.</p>
+
+<p>To prevent this, prior to rebooting the following command needs to be executed:</p>
+
+<p><code>
+vgreduce volume_group /dev/loop1
+</code></p>
+
+<p>And the following command will attempt to backtrack you out of the situation where one forgets to do that prior to it, and needs to recover the volume group to access the logical volumes on it. Not that anyone would <em>ever</em> do that.</p>
+
+<p><code>
+vgreduce volumegroup --removemissing
+</code></p>
+
+<p>(Yeah, I&rsquo;ve more recorded these for myself to reference at a later date, so what.)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 08: Enter the Cache]]></title>
@@ -22,7 +80,9 @@
 
 <p><img class="center" src="/deku-scrub/blag/images/cash.gif"></p>
 
-<p>Not.. that kind of cash. Ha. HA HA. <a href="http://en.wikipedia.org/wiki/Dm-cache">dm-cache</a> was a proprosed kernel module solution to allow quick access to frequently used blocks from a large slow disk using a quick fast disk. As of <a href="https://www.kernel.org/doc/Documentation/device-mapper/cache.txt">April 28, 2013</a> it is now officially a part of the Linux kernel. LVM cache, from my understanding, provides an easy approach to allow the user to configure this through LVM by making use of the dm-cache module. At its heart, lvmcache requires an original, large and slow logical volume, and then a smaller but fast logical volume. A third logical volume is also utilized for metadata storage, not unlike how a thinpool stores its metadata.</p>
+<p>Not.. that kind of cash. Ha. HA HA. <a href="http://en.wikipedia.org/wiki/Dm-cache">dm-cache</a> was a proprosed kernel module solution to allow quick access to frequently used blocks from a large slow disk using a quick fast disk. As of <a href="https://www.kernel.org/doc/Documentation/device-mapper/cache.txt">April 28, 2013</a> it is now officially a part of the Linux kernel. The Wiki article does a better job of explaining, as usual, but dm-cache helps speed up a slow device by storing only the modified blocks to the fast device and marking the slow device as dirty, allowing full reads and writes to occur solely off the cache. For this reason, it is recommended that the caching device be <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels#RAID_1">mirrored</a>.</p>
+
+<p>LVM cache, from my understanding, provides an easy approach to allow the user to configure this through LVM by making use of the dm-cache module. At its heart, lvmcache requires an original, large and slow logical volume, and then a smaller but fast logical volume. A third logical volume is also utilized for metadata storage, not unlike how a thinpool stores its metadata.</p>
 
 <p>An odd tidbit about lvmcache, though, is that the logical volumes that are utilized must all be within the same volume group. To review, a physical volume (like an actual primary partition of a device or another device entirely) can only be within one volume group at a time, and the volume group provides an abstraction over those physical devices to the logical volumes. Or at least that&rsquo;s what I thought.</p>
 
@@ -39,6 +99,65 @@ lvs -o+tags
 </code></p>
 
 <p>But unfortunately, I don&rsquo;t know much else about them. I believe though that they provide some abstraction that was desired previously with the bypassing of the volume group. <a href="http://rwmj.wordpress.com/2014/05/30/lvm-cache-contd-tip-using-tags/">Here is more information</a> on that.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Day 07: Daily Time Machine]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine/"/>
+    <updated>2014-05-30T22:17:38-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/30/day-07-daily-time-machine</id>
+    <content type="html"><![CDATA[<p>Happy Friday! I finally feel like I&rsquo;m becoming well-versed with these LVM commands. I&rsquo;m also starting to feel a lot more comfortable in general. It might just be because we&rsquo;re using Thinkpads, but this laptop has byfar been the most comfortable linux experience I&rsquo;ve had to date. There are still very minor things that are preventing me from using it all the time (some as major as the trackpad being awful, and some as minor as the default gnome drop shadow size) but it is all around very pleasant. Maybe I&rsquo;m being brainwashed by Red Hat, but I&rsquo;m also probably gonna swap out my home server with Fedora instead of Debian.</p>
+
+<p>But that&rsquo;s ALL besides the point. Today I set up a cool thing which I shall now share with you now.</p>
+
+<p>```</p>
+
+<h1>lvs</h1>
+
+<p>  LV            VG    Attr       LSize  Pool    Origin Data%  Meta%
+  homey         purin Vwi-aotz&mdash;  1.00t thinset          2.24   <br/>
+  &hellip;
+  snap05.30.14e purin Vwi&mdash;-tz-k  1.00t thinset homey           <br/>
+  snap05.30.14m purin Vwi&mdash;-tz-k  1.00t thinset homey           <br/>
+  snap06.01.14e purin Vwi&mdash;-tz-k  1.00t thinset homey           <br/>
+  thinset       purin twi-a-tz&mdash; 50.00g                 47.15  25.06
+```</p>
+
+<p>Here you can see that I have a 50G lvm thin pool called &ldquo;thinset&rdquo; (at the bottom), and within this pool is a logical thin volume called &ldquo;homey&rdquo;. Then there are three snapshots that use &ldquo;homey&rdquo; as their origin, meaning they are a snapshot of &ldquo;homey,&rdquo; and will copy the required bytes on write to maintain their snapshot state.</p>
+
+<p>What ISN&rsquo;T shown here is that I currently have the &ldquo;homey&rdquo; LV mounted at <code>/home</code></p>
+
+<p>```</p>
+
+<h1>df -h</h1>
+
+<p>Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/purin-homey 1008G  6.0G  951G   1% /home
+```</p>
+
+<p>There are the usual interesting things about lvmthin volumes that you can note here, such as <code>df</code> believing the filesystem only has 1% of its &ldquo;1008G&rdquo; used, when in reality the thin pool only has 50G that it is able to allocated. But you can also see that I have snapshots of the form <code>snapMM.DD.YY(e/m)</code>, which are taken daily on that date (with e for evening and m for morning). This was configured via <code>cron</code> by editing <code>/etc/crontab</code> to have the following new lines appended:</p>
+
+<p><code>
+  0  10 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)m
+  0  17 *  *  * root       lvcreate -s purin/homey -n snap$(date +\%m.\%d.\%y)e
+</code></p>
+
+<p>Making my snapshot commands being run on the 10th (10AM) and 17th (5PM) hours of each day. It&rsquo;s also worth noting that <code>anacron</code> could be used if I wanted to queue up the snapshots for when the computer was powered down, but that isn&rsquo;t desired behavior, at least not for me.</p>
+
+<p>You might be thinking to yourself &ldquo;Okay who cares about cron what does that really have to do with your internship?&rdquo; To which I respond it&rsquo;s just cool, okay?! SHARING IS CARING.</p>
+
+<p>Some more things to note here is that I did have to create the &ldquo;homey&rdquo; LV from nothing and manually copy over my files from my old <code>/home</code>. This is due to the fact that I needed it to be within a thin pool, and you can only take thin snapshots of an external origin (LV that isn&rsquo;t within a thin pool) when that source is read-only. I thought I&rsquo;d just start it all over.</p>
+
+<p><code>
+lvconvert --merge purin/snapMM.DD.YYz
+</code></p>
+
+<p>The above command can be run (when <code>/home</code> isn&rsquo;t mounted) to rollback to the given snapshot day. I&rsquo;ve tested it a little bit so far and it has been successful, but it should get a lot more interesting once I have a bunch of snapshots to go off. If one tries to <code>lvconvert</code> while the origin is mounted, the merge will be queued until the next mount of the <strong>snapshot</strong>. This actually took me a while to learn. And don&rsquo;t forget, to activate a thin snapshot one needs to pass the <code>-K</code> flag as mentioned in an earlier blog post.</p>
+
+<p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, as seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
+
+<p>I have a feeling Monday&rsquo;s post is going to involve ram disks and dm-cache, so stay tuned and try not to fall off the edge of your seat.</p>
 ]]></content>
   </entry>
   
@@ -117,114 +236,6 @@ lvconvert -ay -K vg/lv
 <p>That simple <code>-K</code> argument drove me crazy for a bit. It was mentioned in the documentation, but I must have passed by it. As leaving <code>-K</code> out silently fails, I wasn&rsquo;t sure if my build of lvm2 was broken or what (as it would just not mark it active without telling me it failed).</p>
 
 <p>With this knowledge it is possible to easily create daily full snapshots of an entire filesystem without taking up any more space than would have been taken up by the difference bytes. The thin volumes will dynammically expand to fill the pool, so one does not have to worry at all about the sizes of the snapshots (in fact, you aren&rsquo;t allowed to set it for a thin snapshot). The <a href="http://wiki.gentoo.org/wiki/LVM">Gentoo Wiki</a> actually has really good instructions and easy to follow commands on all of this if you don&rsquo;t want to take my word for them (or in the more likely case, if i&rsquo;ve left something out).</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Day 04: LVM and LVM Snapshots]]></title>
-    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning/"/>
-    <updated>2014-05-27T18:32:05-04:00</updated>
-    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/27/day-04-thin-provisioning</id>
-    <content type="html"><![CDATA[<p>We&rsquo;re jumping right into this, because it&rsquo;s pretty crazy. Like, mad crazy son. I haven&rsquo;t talked much about what <a href="http://en.wikipedia.org/wiki/Logical_volume_management">lvm</a> actually is. So I&rsquo;m gonna attempt to do an introduction to it right now. Right here. Literally next.</p>
-
-<p>An entire drive can be split into partitions. This is old news. What&rsquo;s also old news is that you can only have a maximum of four primary partitions on an MBR drive. While this is <a href="http://en.wikipedia.org/wiki/GUID_Partition_Table">being phased out</a>, it is still very popular. Additionally, what if you want to have a partition that&rsquo;s <strong>bigger</strong> than your entire physical drive? That sounds a little silly&mdash; when exactly would you WANT to have more data than can fit on one drive? Just buy another drive and make a new filesystem and manage &lsquo;em no? Well that&rsquo;s annoying and not as cool as LOGICAL VOLUME MANAGEMENT. I hope I&rsquo;m asking the right rhetorical questions here.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/lvm.png"></p>
-
-<p>Okay, I&rsquo;ve pretty much ALREADY butchered this explanation, so let&rsquo;s try to salvage what I&rsquo;ve said so far with this diagram. At the bottom layer are the physical volumes. In this case, there are two SEPARATE devices (<code>/dev/sda</code> and <code>/dev/sdb</code>). They don&rsquo;t actually have to be the same size but in this case they are. Now, these could be like, a spinning hard disk and a flash drive, for example. Then on top of this you create something called a volume group (VG). On top of that are the actual logical volumes which can be split up however you want, and then finally those volumes can be formatted as filesystems.</p>
-
-<p>For simplicity&rsquo;s sake, these instructions are going to refer to a single 32GB device, <code>/dev/sdc</code> that is assumed to be totally unallocated (no filesystems). While you span multiple different types of device media, lvm still has benefits to offer on a single physical device. You can play along at home if you&rsquo;d like by destroying all the filesystems on it through a tool like parted or gparted.</p>
-
-<p><code>
-pvcreate /dev/sdc1
-vgcreate dat_group_name_tho /dev/sdc1
-</code></p>
-
-<p>So now we&rsquo;ve got ourselves a volume group spanning the entire USB stick. If you had an existing filesystem on <code>/dev/sdc1</code>, but some unallocated space after, you could also have created the physical volume (with <code>pvcreate</code>) on /dev/sdc2.</p>
-
-<p>So now check this out:
-<code>
-lvcreate --size 10G --name first_lv dat_group_name_tho
-</code></p>
-
-<p>This creates a single 10GB logical volume across the device. Keep in mind this now leaves us with 22GB left free to create more logical volumes within this volume group. This of course can be formatted an mounted just like any real disk.
-<code>
-mkfs.ext4 /dev/mapper/dat_group_name_tho-first_lv
-mkdir /mnt/my_lvm
-mount /dev/mapper/dat_group_name_tho-first_lv /mnt/my_lvm
-</code></p>
-
-<p>Nothing special so far though, ya? WRONG. So in between the LV and the PV exists something called the device mapper, of which I know nothing about. Hopefully I will learn about it in the future, though. But thanks to this, it&rsquo;s possible to play with the data in some interesting ways, including making <a href="http://en.wikipedia.org/wiki/Snapshot_(computer_storage">snapshots</a>) of the filesystem.</p>
-
-<p>So here&rsquo;s how this diddy breaks down: a snapshot, from the moment it is created on a target filesystem, is a logical volume itself that will store the <strong>differences</strong> between it and the target volume. That is, physically the snapshot logical volume will ONLY contain the old bytes that have since been overwritten on the original device since it was taken. This means that the snapshot will be empty until a write is made on its target. Then the old data, before being overwritten will be written to the snapshot volume. Using this small set of differences, given a snapshot and its target, one can recreate the entire filesystem from the point it was taken.</p>
-
-<p><code>
-lvcreate --snapshot dat_group_name_tho/first_lv --size 200M --name snap5_27_14 dat_group_name_tho
-</code></p>
-
-<p>Above I&rsquo;ve created a snapshot of our <code>first_lv</code> using <code>lvcreate</code>, just like other logical volumes, but using the <code>--snapshot [target]</code> argument. Now here&rsquo;s the fun part: MOUNTING that snapshot.</p>
-
-<p><code>
-mkdir /mnt/snap
-mount /dev/mapper/dat_grup_name_tho-snap5_27_14 /mnt/snap
-</code>
-When you mount it, you&rsquo;ll notice it mounts as a 10GB volume! Not the 200MB volume that we allotted it. You can now open both <code>/mnt/snap</code> and <code>/mnt/my_lvm</code> side by side. (Also, I should have noted that we should have created some files on <code>/mnt/my_lvm</code> prior to taking a snapshot of it&hellip;). The snapshot volume will contain the exact data that our lvm volume had when we took the snapshot, without taking up the same amount of space.</p>
-
-<p>There&rsquo;s a caveat here though that I have not discussed: What happens when differences between the original and the target volume <strong>exceed</strong> 200MB? Well, the snapshot will then become invalidated. To ensure that the snapshot won&rsquo;t fill, you can make it the same size as the target volume (10GB), but then we lose the previous advantage of not requiring to be the same size as the target volume. It SEEMS kinda chicken and eggy, and oh whatever shall we do about it? WELL FRET NOT.</p>
-
-<p>Tomorrow I will discuss what I know so far about lvm thin provisioning (which is what my actual internship is around&mdash; reviewing that the lvmthin documentation is up to date.), and in particular how it addresses this little snapshot dilemna.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/IMG_20140527_172623.jpg"></p>
-
-<p>Before I go, I found this special mirror-outlet today on a mirror in the building. WHAT. That&rsquo;s amazing.</p>
-
-<p>Oh also, I forgot to mention, a snapshot is 100% read and writable, just as if it were the original filesystem, without taking up the same amount of space (as it shares the common bytes). AWESOME.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Day 03: Cubicle Sweet Cubicle]]></title>
-    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle/"/>
-    <updated>2014-05-23T04:06:11-04:00</updated>
-    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/23/day-03-cubicle-sweet-cubicle</id>
-    <content type="html"><![CDATA[<p>This was the first &ldquo;real&rdquo; work day here, without any intern specific activities, and also a Friday. When I arrived and parked in a spot in the back of the building, with my new babby laptop in tow, I really, for a brief moment, felt like a functioning member of society. I heroically scanned into the building using my incredibly and extremely fancy spider-man web-launcher style security card, only to become INSTANTLY lost in the maze that was the building. After eventually making my way to the Cube (and making a stop for a bagel in the break room)</p>
-
-<p>Don&rsquo;t worry your sweet eyes shall not be disappointed by today&rsquo;s entry, for I have MORE PICTURES.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/IMG_20140523_112111.jpg"></p>
-
-<p>My manager met with me briefly before the day started to let me know that he would be sending me a couple of more resources on lvm and the like. He also dropped off not one, but two old desktop computers. We&rsquo;re talking like, 128MB ram on these pups. OH MAN I JUST REMEMBERED SOMETHING THAT NEEDS TO BE TALKED ABOUT NOW AND NOT LATER.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/500004774-03-01.jpeg"></p>
-
-<p>I went inside one of these server rooms yesterday and they are <em>really cool</em>. Also very loud. But I was shocked that they actually looked like this! Each rack has many shelves, and each shelf has a server. Then there are SO MANY of those racks. There were wires everywhere and fans running (hence the noise) for cooling. It was some SERIOUS business. It really gave me a sense of just what &ldquo;scalability&rdquo; means and why it&rsquo;s so important. Like, there were a LOT of computers here.</p>
-
-<p>Okay, but those computers were nothing in comparison to my dinosaurs. Here are the specs, again in convenient table format.</p>
-
-<p>[coming soon, I don&rsquo;t actually have those specs on hand right now. Gist-wise though, one had two 750GB drives, the other one 500GB drive]</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/IMG_20140523_112117.jpg"></p>
-
-<p>The computers had some RHEL installs on them setup with virtual machines, but as per my manager&rsquo;s request, I pushed all of those aside and performed a fresh install of RHEL6. When doing this, I was also (obviously) allowed to select the way the disks looked. For the machine with two drives, I settled on the following layout:</p>
-
-<p>Drive 1: 200mb /boot, remaining space RAID member 2
-Drive 2: full RAID member 2</p>
-
-<p>RAID: one logical volume group</p>
-
-<p>volume group: 10GB logical volume for /, 4GB swap, 50GB logical volume for /home</p>
-
-<p>You might think that&rsquo;s all boring, but it (should mean) that anything at all that happens to any of the volumes within the volume group would be completely synced across drives. That is, if one drive were to fail completely, all of the data would remain intact.</p>
-
-<p>Due to the fact that it&rsquo;s between only two drives, that makes it just a simple RAID1 setup. Regardless, I put it to the test. While it was booted, I had a file open. I then ripped out one of the drives (as they are removable), performed a write, put the drive back in, waited for them to sync, and then ripped out the other one. Sure enough, the system was completely unaffected, as it should have been.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/chickensandwich.jpg"></p>
-
-<p>What this blog REALLY needs is more pictures of food. Lunch (cost money&hellip;) but was also pretty good. I had pretty much the above. The remainder of the day was spent reading up on some lvm docs that are totally confidential. <a href="/deku-scrub/blag/images/nope.txt">Just kidding</a>. But really, it wasn&rsquo;t all that interesting. What was pretty cool though, was later installing the RHEL7 release candidate on a new logical volume on my laptop. That&rsquo;s also confidential though. <a href="/deku-scrub/blag/images/nope.txt">OH ALSO JUST KIDDING. AGAIN</a>.</p>
-
-<p>Not sure where this is going again. I&rsquo;ve lost perspective. Also scope. Last thing I&rsquo;d talk about is there&rsquo;s a package called <code>system-storage-manager</code> which is a pretty neat, (but still CLI) program to interface with lvm without needing to get down and dirty with lvm commands.</p>
-
-<p>Yes, that is what I leave you with.</p>
 ]]></content>
   </entry>
   
