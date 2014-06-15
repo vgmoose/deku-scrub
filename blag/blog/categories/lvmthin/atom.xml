@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmthin | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmthin/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-15T02:25:23-04:00</updated>
+  <updated>2014-06-15T02:51:31-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 11: Triple Threat]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/06/05/day-11-triple-threat/"/>
+    <updated>2014-06-05T19:32:13-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/05/day-11-triple-threat</id>
+    <content type="html"><![CDATA[<p>Much of my job consists of taking my computers&hellip; and destroying them. Well, I&rsquo;m not supposed to be destroying them, and I&rsquo;m not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it&rsquo;s usually just less effort to reformat them and try something different.</p>
+
+<p><img class="center <a" src="href="http://imgs.xkcd.com/comics/computer_problems.png">http://imgs.xkcd.com/comics/computer_problems.png</a>"></p>
+
+<p>I was going to put in that <a href="http://xkcd.com/349/">other xkcd</a> relating to computer problems, but this one seems more appropriate.</p>
+
+<p>Now don&rsquo;t get me wrong, breaking the computers isn&rsquo;t necessarily <em>bad</em>. The actual problem is the fact that usually they break because of something that <em>I</em> do to them that&rsquo;s out of line. But then I learn so even that isn&rsquo;t a lose-lose situation. In reality, if I could find something that the user would expect to work according to the documentation that consistently (this being the key word here) breaks the machine, then I can create a bugzilla report from that.</p>
+
+<p>So today&rsquo;s big news was that I had all three computers down, and was gong back and forth between them all frantically trying to fix them. For the laptop that means making sure I can still boot to my fedora install–- this usually means fixing it from the rhel7 release candidate dual boot. For the other two computers, it&rsquo;s reformatting them and deciding on a new order / seeing what exactly went wrong during the latest install. Although Red Hat has a network boot system with a bunch of system installers on it, I usually find it easier to use my usb with rhel7 on it.</p>
+
+<p>I&rsquo;m pretty picky with bugs, but I am surprised by how it can sometimes be very simple to break the boot order. That being said, I am practically playing with fire here with some of the commands that I run.</p>
+
+<p><code>
+mkfs.ext4 /dev/mapper/vg-thinpool
+</code></p>
+
+<p>The above command will format the thinpool and at first I was surprised that it worked, but in retrospect I don&rsquo;t know how it could be prevented. Upon running it my thin volumes that were within that pool seemed totally broken (and I can&rsquo;t say that I didn&rsquo;t expect them to be.)</p>
+
+<p>Another caveat that frequently and still catches me is when I&rsquo;m playing around with a ramdisk via loop back device as discussed a few posts ago. If one reboots without running <code>vgreduce</code> to remove the loopback device from the volume group, chaos usually ensues.</p>
+
+<p>When it&rsquo;s all said and done though, hopefully I can find some combination that people haven&rsquo;t accounted for that will destroy the systems. And until then, hopefully I can understand how and why the machine are actually breaking.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 10: Snapshot Restore Aftermath]]></title>
@@ -34,7 +63,7 @@ lvchange -kn vg/cur_home
 lvchange -ky vg/old_home
 </code></p>
 
-<p>And then on the next reboot all way well&hellip; With the exception of <code>lvs</code> looking a bit messier now (as you can tell when a point has been restored from by looking at the origins).</p>
+<p>And then on the next reboot all was well&hellip; With the exception of <code>lvs</code> looking a bit messier now (as you can tell when a point has been restored from by looking at the origins).</p>
 
 <p><img class="center" src="/deku-scrub/blag/images/IMG_20140604_162029.jpg"></p>
 
@@ -46,7 +75,7 @@ lvchange -ky vg/old_home
 
 <p><img class="center" src="/deku-scrub/blag/images/IMG_20140604_162042.jpg"></p>
 
-<p>I&rsquo;d move the other one to the floor, but until I get an extension cord moving the first one isn&rsquo;t much of an option. This buttom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
+<p>I&rsquo;d move the other one to the floor, but until I get an extension cord moving the first one isn&rsquo;t much of an option. This bottom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
 ]]></content>
   </entry>
   

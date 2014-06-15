@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvm | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvm/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-15T02:25:23-04:00</updated>
+  <updated>2014-06-15T02:51:31-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 11: Triple Threat]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/06/05/day-11-triple-threat/"/>
+    <updated>2014-06-05T19:32:13-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/05/day-11-triple-threat</id>
+    <content type="html"><![CDATA[<p>Much of my job consists of taking my computers&hellip; and destroying them. Well, I&rsquo;m not supposed to be destroying them, and I&rsquo;m not necessarily trying to either, but usually in testing LVM I manage to find one way or another to make the machines unbootable. Thankfully, due to the wealth of LVM information out there, more often than not I am capable of fixing the problems that develop on my laptop, but for the desktops it&rsquo;s usually just less effort to reformat them and try something different.</p>
+
+<p><img class="center <a" src="href="http://imgs.xkcd.com/comics/computer_problems.png">http://imgs.xkcd.com/comics/computer_problems.png</a>"></p>
+
+<p>I was going to put in that <a href="http://xkcd.com/349/">other xkcd</a> relating to computer problems, but this one seems more appropriate.</p>
+
+<p>Now don&rsquo;t get me wrong, breaking the computers isn&rsquo;t necessarily <em>bad</em>. The actual problem is the fact that usually they break because of something that <em>I</em> do to them that&rsquo;s out of line. But then I learn so even that isn&rsquo;t a lose-lose situation. In reality, if I could find something that the user would expect to work according to the documentation that consistently (this being the key word here) breaks the machine, then I can create a bugzilla report from that.</p>
+
+<p>So today&rsquo;s big news was that I had all three computers down, and was gong back and forth between them all frantically trying to fix them. For the laptop that means making sure I can still boot to my fedora install–- this usually means fixing it from the rhel7 release candidate dual boot. For the other two computers, it&rsquo;s reformatting them and deciding on a new order / seeing what exactly went wrong during the latest install. Although Red Hat has a network boot system with a bunch of system installers on it, I usually find it easier to use my usb with rhel7 on it.</p>
+
+<p>I&rsquo;m pretty picky with bugs, but I am surprised by how it can sometimes be very simple to break the boot order. That being said, I am practically playing with fire here with some of the commands that I run.</p>
+
+<p><code>
+mkfs.ext4 /dev/mapper/vg-thinpool
+</code></p>
+
+<p>The above command will format the thinpool and at first I was surprised that it worked, but in retrospect I don&rsquo;t know how it could be prevented. Upon running it my thin volumes that were within that pool seemed totally broken (and I can&rsquo;t say that I didn&rsquo;t expect them to be.)</p>
+
+<p>Another caveat that frequently and still catches me is when I&rsquo;m playing around with a ramdisk via loop back device as discussed a few posts ago. If one reboots without running <code>vgreduce</code> to remove the loopback device from the volume group, chaos usually ensues.</p>
+
+<p>When it&rsquo;s all said and done though, hopefully I can find some combination that people haven&rsquo;t accounted for that will destroy the systems. And until then, hopefully I can understand how and why the machine are actually breaking.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 10: Snapshot Restore Aftermath]]></title>
@@ -34,7 +63,7 @@ lvchange -kn vg/cur_home
 lvchange -ky vg/old_home
 </code></p>
 
-<p>And then on the next reboot all way well&hellip; With the exception of <code>lvs</code> looking a bit messier now (as you can tell when a point has been restored from by looking at the origins).</p>
+<p>And then on the next reboot all was well&hellip; With the exception of <code>lvs</code> looking a bit messier now (as you can tell when a point has been restored from by looking at the origins).</p>
 
 <p><img class="center" src="/deku-scrub/blag/images/IMG_20140604_162029.jpg"></p>
 
@@ -46,7 +75,7 @@ lvchange -ky vg/old_home
 
 <p><img class="center" src="/deku-scrub/blag/images/IMG_20140604_162042.jpg"></p>
 
-<p>I&rsquo;d move the other one to the floor, but until I get an extension cord moving the first one isn&rsquo;t much of an option. This buttom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
+<p>I&rsquo;d move the other one to the floor, but until I get an extension cord moving the first one isn&rsquo;t much of an option. This bottom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
 ]]></content>
   </entry>
   
@@ -195,35 +224,6 @@ lvconvert --merge purin/snapMM.DD.YYz
 <p>I have a couple more questions in my head about this mysterious, magical snapshot process. The big ones are: What happens to garbage files, like if I were to run <code>dd if=/dev/zero of=file.out bs=4k count=5000000</code>? Would the resulting 10G file be kept around in the thinpool? And if so, how could that easily be detached from all the snapshots? And another question is, in the output from <code>lvs</code> above, why is the data percent so high? I am not using 2% of 1T, as seen in <code>df</code> my home directory is only 6G, and 2% of 1T is 20G. Is that <em>because</em> I ran commands similar to that <code>dd</code> one? Not that I <em>did</em>.</p>
 
 <p>I have a feeling Monday&rsquo;s post is going to involve ram disks and dm-cache, so stay tuned and try not to fall off the edge of your seat.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Day 06: Life at Red Hat]]></title>
-    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/05/29/day-06-of-bugzilla-and-bagels/"/>
-    <updated>2014-05-29T23:42:49-04:00</updated>
-    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/05/29/day-06-of-bugzilla-and-bagels</id>
-    <content type="html"><![CDATA[<p>This post is focused primarily on what it&rsquo;s like to work at Red Hat. My past few posts have been more on the technical side, as much of what I do consists of that. The other interns have more frequent meetings with their managers, but I appear to be on a much smaller team. As a result of this, much of my day is the same with the <em>exception</em> of the technical stuff that I&rsquo;m playing around with that day.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/redhat-ovs-sdn.jpg"></p>
-
-<p>Before I get into the actual workflow, HERE&rsquo;S WHAT YOU NEED TO KNOW. I hadn&rsquo;t realized how much I agreed with the &ldquo;ideals&rdquo; of the company until I actually started working there. A couple of years ago if someone said &ldquo;Red Hat&rdquo; I might have responded with &ldquo;oh, those dudes that are trying to commercialize Linux?&rdquo; AND OH HOW WRONG I WOULD HAVE BEEN. I guess the biggest and most important thing that I hadn&rsquo;t realized about the company was that Fedora pretty much IS RHEL (Red Hat Enterprise Linux), or at least acts as its upstream. Fedora is on a 6 month release cycle, while RHEL is on a 2 year release cycle. I had originally thought Red Hat &ldquo;claimed&rdquo; to give back to to the community through Fedora, but put all their good stuff in RHEL. In reality, they actually work <a href="https://git.fedorahosted.org/git/lvm2.git">totally in the open</a>, and then add the finished product to the next RHEL release if it goes over well in Fedora.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/Justice_League_break_room.jpg"></p>
-
-<p>I don&rsquo;t know if it&rsquo;s the aforementioned culture or what but everyone here is just VERY laid back. Everybody&rsquo;s smiling at you, and nobody seems to throw you a look that says &ldquo;shouldn&rsquo;t you be doing something important instead of playing around on a computer all day?&rdquo; What&rsquo;s more, everyone in the company also unanimously seems to agree that they love it. I never see managers asking people to see their work, and I even overheard a story about a guy who they noticed never came in (always worked from home) so they just gave his cubicle to someone else. It&rsquo;s VERY relaxed. I bought a bunch of semi-fancy shirts only to find that everyone just wears jeans. I REALLY dig the atmosphere. You can tell because I&rsquo;m using the word &ldquo;dig&rdquo; to describe just how much I dig it.</p>
-
-<p>There is a break room on every floor which contains snacks, fruit, coffee, and (most importantly) water. In addition to that, every single morning there are bagels just straight up available with cream cheese. Other than that, though, my daily routine consists of mostly bouncing back and forth between the break room and my cubicle to (fill up on water) and (read documentation || pound my head against some linux thing) respectively.</p>
-
-<p><img class="center" src="/deku-scrub/blag/images/Redhat_NB5.jpg"></p>
-
-<p>When lunch time rolls around, so far I&rsquo;ve only ever eaten at the cafeteria on the first floor (which is pictured above&mdash; it looks really nice because they just redid it). Usually, as mentioned before, I get the grilled chicken sandwich, although today I opted for a turkey wrap. The selection isn&rsquo;t too great, but fortunately what they do have are foods that I eat. There are two main issues that I currently have with lunch: 1. I don&rsquo;t get paid to do it and 2. I have to pay to do it. Even though each meal runs me about $5, it still doesn&rsquo;t feel great to see the money leaving my card balance. What especially doesn&rsquo;t feel great is the fact that if I had greater self control I could probably just tuck away a morning bagel and have that for free.</p>
-
-<p>Sometimes at the end of the day one of the two people on my team (my manager and pseudo-manager) will come up to me and meet with me for a bit and discuss my progress and what I should be looking at and focusing on. Thus far, I&rsquo;ve still just been focusing on the lvm stuff and primarily the lvmthin stuff. There is talk about having me take a look at dm-cache though. With any luck, I should be contributing semi-meaningful <a href="https://bugzilla.redhat.com/buglist.cgi?component=lvm2&amp;product=Red%20Hat%20Enterprise%20Linux%205">bug reports</a> soon.</p>
-
-<p>Other than that, there isn&rsquo;t much going on outside of the technical things discussed here. Once a week all the interns get together and have a group lunch (which we get paid for) and there is talk about a final intern group presentation that we would have to coordinate. Additionally, while I&rsquo;m at work and connected to the intranet, I hang out (but currently do not talk in) IRC channels for lvm and the interns.</p>
-
-<p>Drive there, park, scan inside, eat, cube, drink, cube, drink, cube, eat, drink, cube, drink, cube, talk to manager (sometimes), leave, drive home. And I love it.</p>
 ]]></content>
   </entry>
   

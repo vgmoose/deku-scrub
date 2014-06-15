@@ -4,7 +4,7 @@
   <title><![CDATA[Category: snapshot | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/snapshot/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-15T02:25:23-04:00</updated>
+  <updated>2014-06-15T02:51:31-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -34,7 +34,7 @@ lvchange -kn vg/cur_home
 lvchange -ky vg/old_home
 </code></p>
 
-<p>And then on the next reboot all way well&hellip; With the exception of <code>lvs</code> looking a bit messier now (as you can tell when a point has been restored from by looking at the origins).</p>
+<p>And then on the next reboot all was well&hellip; With the exception of <code>lvs</code> looking a bit messier now (as you can tell when a point has been restored from by looking at the origins).</p>
 
 <p><img class="center" src="/deku-scrub/blag/images/IMG_20140604_162029.jpg"></p>
 
@@ -46,7 +46,7 @@ lvchange -ky vg/old_home
 
 <p><img class="center" src="/deku-scrub/blag/images/IMG_20140604_162042.jpg"></p>
 
-<p>I&rsquo;d move the other one to the floor, but until I get an extension cord moving the first one isn&rsquo;t much of an option. This buttom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
+<p>I&rsquo;d move the other one to the floor, but until I get an extension cord moving the first one isn&rsquo;t much of an option. This bottom one is the one with the removable hard disks, so in retrospect perhaps I should have left it on the desk instead of having to lean down to remove a disk.</p>
 ]]></content>
   </entry>
   
