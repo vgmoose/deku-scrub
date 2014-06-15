@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmcache | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmcache/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-15T02:51:31-04:00</updated>
+  <updated>2014-06-15T04:18:11-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 12: Kernel Upgrading and Reinstallation]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/06/06/day-12-kernel-upgrading-and-reinstallation/"/>
+    <updated>2014-06-06T19:32:48-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/06/day-12-kernel-upgrading-and-reinstallation</id>
+    <content type="html"><![CDATA[<p>The toolset <code>lvmcache</code> is special in that it isn&rsquo;t supported in the default kernel that ships with Fedora 20. My RHEL7 machines (and partition on my laptop) have no issues using it, but it would be most useful to have functioning on my laptop. After a lot of researching I learned that it eventually boiled down to the version of the linux kernel that I was using.</p>
+
+<p><code>
+uname -r
+</code></p>
+
+<p>The above command reports information about the kernel. I was running 3.11, which does not have <a href="https://github.com/mingzhao/dm-cache">dm-cache</a> support. The README lists instructions on how to compile the kernel module, but I had mixed results. My knowledge of how a kernel is actually compiled is severly limited given my previous userland background, but that didn&rsquo;t mean that I wasn&rsquo;t ready to give it my all. The short explanation is that it may not have been as simple as the instructions made it out to be. The long explanation is that I spent a long time downloading various kernel sources and headers  trying to recompile and add this module to the kernel.</p>
+
+<p>The process is all very official and streamlined, but it still gave me some issues. For that reason, I am choosing <em>not</em> to include the instructions here, for fear that someone else will build upon my mistakes. After I finally seemed to have everything functioning, I didn&rsquo;t actually know how to &ldquo;activate&rdquo; it. When flashing kernels on Android, it&rsquo;s always fairly obvious. I mean, you usually just go to recovery and literally flash it. There&rsquo;s no concept of multiple kernels or anything.</p>
+
+<p><code>
+sudo yum update kernel
+</code></p>
+
+<p>It should be noted here that, prior to deciding to jump in and compile my own kernel, I had tried the simple above command. When I first typed it, I thought I was an idiot, it couldn&rsquo;t be so simple. Once it actually started to download and install kernel 3.14 though, I then felt very satisfied. Upon rebooting though, the kernel still wasn&rsquo;t activated. Well, to get back to my own compiled kernel, the case was the same for that. Neither the updated kernel from yum nor my own custom kernel seemed to be activated.</p>
+
+<p>I&rsquo;m not sure if I missed something along the lines, and I was getting increasingly frustrated, so I performed a reinstall of Fedora 20. As you know, my home directory is on another partition, so all of my data and preferences were still intact. Still though, my kernel refused to update. Then it hit me, and things started to click into place. The whole manner in which my system functions is it loads a kernel into ram from a /boot physical partition selected via grub, and this kernel then mounts and loads the filesystem and all its contents.</p>
+
+<p>Well, as it turned out that was an oversimplication. It would seem that the grub bootloader entries actually contain information about the kernel that is being used at boot. Unlike the Android model where you can flash and only use one at a time, it would seem the kernels are almost hot swappable via grub. I should have expected such functionality.</p>
+
+<p><code>
+grub2-mkconfig -o /boot/grub/grub.cfg
+</code></p>
+
+<p>So as it turned out, getting grub to re-run the OS scanner and reconfigure itself allowed it to pick up both kernels, and 3.11 and 3.14 are both selectable at boot time. I&rsquo;m a little surprised that I had never come across this in any of my kernel building tutorials, but I should probably blame myself for not having ran a real multi-boot linux machine in a long time.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 11: Triple Threat]]></title>
