@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmcache | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmcache/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-15T04:18:11-04:00</updated>
+  <updated>2014-06-19T00:31:49-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -42,7 +42,7 @@ sudo yum update kernel
 grub2-mkconfig -o /boot/grub/grub.cfg
 </code></p>
 
-<p>So as it turned out, getting grub to re-run the OS scanner and reconfigure itself allowed it to pick up both kernels, and 3.11 and 3.14 are both selectable at boot time. I&rsquo;m a little surprised that I had never come across this in any of my kernel building tutorials, but I should probably blame myself for not having ran a real multi-boot linux machine in a long time.</p>
+<p>So as it turned out, getting grub to re-run the OS scanner and reconfigure itself allowed it to pick up both kernels, and 3.11 and 3.14 are both selectable at boot time. Such fine grained control should have been expected. I&rsquo;m a little surprised that I had never come across this in any of my kernel building tutorials, but I should probably blame myself for not having ran a real multi-boot linux machine in a long time.</p>
 ]]></content>
   </entry>
   

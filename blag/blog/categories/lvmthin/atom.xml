@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvmthin | Deku Scrub]]></title>
   <link href="//vgmoose.github.io/deku-scrub/blag//blog/categories/lvmthin/atom.xml" rel="self"/>
   <link href="//vgmoose.github.io/deku-scrub/blag//"/>
-  <updated>2014-06-15T04:18:11-04:00</updated>
+  <updated>2014-06-19T00:31:49-04:00</updated>
   <id>//vgmoose.github.io/deku-scrub/blag//</id>
   <author>
     <name><![CDATA[Ricky Ayoub]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Day 13: Conference Call and the Slicer]]></title>
+    <link href="//vgmoose.github.io/deku-scrub/blag//blog/2014/06/09/day-13-more-boot-problems-and-the-slicer/"/>
+    <updated>2014-06-09T19:53:17-04:00</updated>
+    <id>//vgmoose.github.io/deku-scrub/blag//blog/2014/06/09/day-13-more-boot-problems-and-the-slicer</id>
+    <content type="html"><![CDATA[<p>Another Monday. My documentation work is slowly making progress. Although there are still some confusing things, they seem to stem from the fact that I&rsquo;ve been mixing and mashing different versions of lvmthin. Things are stable again, for the moment.</p>
+
+<p><img class="center <a" src="href="http://www.shespeaks.com/pages/img/review/apple-slicer-corer_09092011161645.JPG">http://www.shespeaks.com/pages/img/review/apple-slicer-corer_09092011161645.JPG</a>"></p>
+
+<p>The Slicer is a utility that is not provided to the employees, so I am responsible to bring it myself from home. Its primary function is transforming the non-edible fruit in the break room into something that can be consumed by any given human. One simply takes the Slicer and places it atop the target, before pressing their full body weight down on it. After this, the individual pieces can be collected and taken back to the owner&rsquo;s cubicle.</p>
+
+<p>Really though, it has made eating the apples much easier. I&rsquo;m told an apple a day keeps the doctor away, and it seems that <a href="http://jasonseattlethings.tumblr.com/post/86971544360/day-four-wednesday-may-21st">I am not the only one</a> who thinks this way. I suppose time will tell though.</p>
+
+<p>There&rsquo;s something I neglected to mention in my last posting: on June 4th I took part in my first ever biweekly conference call. SIDEBAR: biweekly can mean EITHER &ldquo;twice a week&rdquo; or &ldquo;every other week&rdquo;. In this case it is tha latter.</p>
+
+<p><img class="center <a" src="href="http://www.oit.uci.edu/images/7960G%20Large.jpg">http://www.oit.uci.edu/images/7960G%20Large.jpg</a>"></p>
+
+<p>I can&rsquo;t say the coonference call didn&rsquo;t bring back some painful memories of jobs past. Once you join the call and enter the code on the keypad, you have to state your name followed by the pound symbol. When I first did this, I said my full name and then hit pound. It quickly occurred to me that that probably didn&rsquo;t look that good. Sure enough, when other people started joining they all had one syllable names that they quickly said. Whenever someone joined the conference call, a voice would announce &ldquo;[PERSON] has joined the call&rdquo; using their voice as [PERSON]. Thankfully, I believe that I was the first perosn to join, and made sure that I was the last person to leave, so I don&rsquo;t think that anyone heard me foolishly say out my whole name.</p>
+
+<p>Tomorrow is the launch date of RHEL7, which is on a two and a half year release cycle. So that should be INTERESTING.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Day 11: Triple Threat]]></title>
